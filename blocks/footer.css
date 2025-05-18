@@ -1,0 +1,13 @@
+.footer {
+  height: 10vh;
+  margin: 0;
+}
+.footer__author {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  padding-left: 10vw;
+  margin-top: 20px;
+}
