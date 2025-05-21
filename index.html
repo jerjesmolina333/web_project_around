@@ -27,21 +27,24 @@
                 alt="Jackes Costeau"
               />
             </div>
-            <div class="profile__name-container">
-              <p class="profile__info__name">Jackes Cousteau</p>
-              <p class="profile__info__profession">Explorador</p>
+            <div class="profile__user">
+              <div class="profile__name-container">
+                <p class="profile__info__name">Jackes Cousteau</p>
+                <p class="profile__info__profession">Explorador</p>
+              </div>
+
+              <form class="profile__form-edit">
+                <fieldset class="profile__fieldset">
+                  <button class="profile__boton-edit">
+                    <img
+                      src="./images/Edit Button.png"
+                      class="profile__edit-image"
+                      alt="Edit Button"
+                    />
+                  </button>
+                </fieldset>
+              </form>
             </div>
-            <form class="profile__form-edit">
-              <fieldset class="profile__fieldset">
-                <button class="profile__boton-edit">
-                  <img
-                    src="./images/Edit Button.png"
-                    class="profile__edit-image"
-                    alt="Edit Button"
-                  />
-                </button>
-              </fieldset>
-            </form>
           </div>
 
           <div class="profile__plus-container">
@@ -160,7 +163,7 @@
       <div class="form form_hidden">
         <div class="form__container">
           <h2 class="form__heading">Editar perfil</h2>
-          <form class="form form__container_ctrl_texts">
+          <form class="form__container_ctrl_texts">
             <fieldset class="form__fieldset">
               <input
                 type="text"
@@ -190,10 +193,12 @@
       let textoAutor = document.querySelector(".profile__info__name");
       let profesion = document.querySelector(".profile__info__profession");
       let formaEdicion = document.querySelector(".form");
+
       function despliegaEdicionPerfil() {
         // formaEdicion.classList.remove("form_hidden");
+
         formaEdicion.classList.add("form_display");
-        console.log("Se debe estar viendo el formulario del perfil");
+        // console.log("Se debe estar viendo el formulario del perfil");
       }
 
       botonEditar.addEventListener("click", despliegaEdicionPerfil);
