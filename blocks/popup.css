@@ -1,4 +1,4 @@
-.form {
+.popup {
   width: 95%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -7,21 +7,15 @@
   right: 0;
   box-sizing: border-box;
   margin: 0;
-  /* width: 90%;
-  height: 90%;
-  position: absolute;
-  top: 0;
-  left: 0; */
-  /* border: 1px green solid; */
 }
-.form_hidden {
+.popup_hidden {
   display: none;
 }
-.form_display {
+.popup_opened {
   display: flex;
 }
 
-.form__container {
+.popup__container {
   width: 90%;
   height: 90%;
   position: absolute;
@@ -37,7 +31,7 @@
   margin: auto;
   gap: 20px;
 }
-.form__heading {
+.popup__heading {
   font-family: Inter;
   font-weight: bold;
   font-size: 24px;
@@ -46,24 +40,29 @@
   color: black;
   margin-left: 3vw;
 }
-.form__container_ctrl_texts {
+/* .popup__texts {
   font-family: Inter;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1;
   letter-spacing: 0%;
-}
-.form__button {
+} */
+.popup__button {
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0%;
   width: 30vw;
   height: 50px;
   border: 1px #c4c4c4 solid;
   border-radius: 5px;
   margin-top: 30px;
 }
-.form__button:hover {
+.popup__button:hover {
   border: 2px rgb(0, 110, 255) solid;
 }
-.form__fieldset {
+.popup__fieldset {
   border: 0;
   /* border: 1px blue solid; */
   display: flex;
@@ -72,7 +71,34 @@
   margin-top: 3vh;
   gap: 20px;
 }
-.form__box {
+
+.popup__name {
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0%;
+  border: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #bcbcc4;
+  background-color: transparent;
+  width: 30vw;
+  height: 8vh;
+}
+.popup__profession {
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0%;
+  border: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #bcbcc4;
+  background-color: transparent;
+  width: 30vw;
+  height: 8vh;
+}
+.popup__form-box {
   border: 0;
   box-sizing: border-box;
   border-bottom: 1px solid #bcbcc4;

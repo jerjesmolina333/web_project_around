@@ -19,7 +19,7 @@
 
       <div class="profile">
         <div class="profile__info">
-          <div class="profile__info-container">
+          <div class="profile__user">
             <div class="profile__photo-container">
               <img
                 src="./images/61fef47ea7233788306cac3effd4b76fc303b493.jpg"
@@ -27,26 +27,21 @@
                 alt="Jackes Costeau"
               />
             </div>
-            <div class="profile__user">
-              <div class="profile__name-container">
-                <p class="profile__info__name">Jackes Cousteau</p>
-                <p class="profile__info__profession">Explorador</p>
-              </div>
+            <div class="profile__name-container">
+              <p class="profile__name">Jackes Cousteau</p>
+              <p class="profile__profession">Explorador</p>
+            </div>
 
-              <form class="profile__form-edit">
-                <fieldset class="profile__fieldset">
-                  <button class="profile__boton-edit">
-                    <img
-                      src="./images/Edit Button.png"
-                      class="profile__edit-image"
-                      alt="Edit Button"
-                    />
-                  </button>
-                </fieldset>
-              </form>
+            <div class="profile__botonedit-container">
+              <button class="profile__boton-edit">
+                <img
+                  src="./images/EditButton.png"
+                  class="profile__edit-image"
+                  alt="Edit Button"
+                />
+              </button>
             </div>
           </div>
-
           <div class="profile__plus-container">
             <img
               src="./images/AddButton.png"
@@ -56,17 +51,20 @@
           </div>
         </div>
       </div>
+
       <div class="elements">
         <div class="element">
-          <div class="element__pic-container">
+          <div class="element__piccontainer">
             <img
               src="./images/Acapulco.png"
-              class="element_pic"
+              class="element__pic"
               alt="Acapulco"
             />
           </div>
           <div class="element__group">
-            <h2 class="element__name">Acapulco</h2>
+            <div class="element__name-container">
+              <h2 class="element__name">Acapulco</h2>
+            </div>
             <div class="element__vec-container">
               <img
                 src="./images/Like.png"
@@ -77,15 +75,17 @@
           </div>
         </div>
         <div class="element">
-          <div class="element__pic-container">
+          <div class="element__piccontainer">
             <img
               src="./images/Guanajuato.png"
-              class="element_pic"
+              class="element__pic"
               alt="Guanajuato"
             />
           </div>
           <div class="element__group">
-            <h2 class="element__name">Guanajuato</h2>
+            <div class="element__name-container">
+              <h2 class="element__name">Guanajuato</h2>
+            </div>
             <div class="element__vec-container">
               <img
                 src="./images/Like.png"
@@ -96,15 +96,18 @@
           </div>
         </div>
         <div class="element">
-          <div class="element__pic-container">
+          <div class="element__piccontainer">
             <img
               src="./images/Peña Bernal.png"
-              class="element_pic"
+              class="element__pic"
               alt="Peña de Barnal"
             />
           </div>
           <div class="element__group">
-            <h2 class="element__name">Peña de Bernal</h2>
+            <div class="element__name-container">
+              <h2 class="element__name">Peña de Bernal</h2>
+            </div>
+            div>
             <div class="element__vec-container">
               <img
                 src="./images/Like.png"
@@ -115,11 +118,18 @@
           </div>
         </div>
         <div class="element">
-          <div class="element__pic-container">
-            <img src="./images/Puebla.png" class="element_pic" alt="Puebla" />
+          <div class="element__piccontainer">
+            <img
+              src="./images/Puebla.png"
+              class="element__pic"
+              alt="Imagen de Puebla"
+            />
           </div>
           <div class="element__group">
-            <h2 class="element__name">Puebla</h2>
+            <div class="element__name-container">
+              <h2 class="element__name">Puebla</h2>
+            </div>
+            div>
             <div class="element__vec-container">
               <img
                 src="./images/Like.png"
@@ -130,11 +140,13 @@
           </div>
         </div>
         <div class="element">
-          <div class="element__pic-container">
-            <img src="./images/Taxco.png" class="element_pic" alt="Taxco" />
+          <div class="element__piccontainer">
+            <img src="./images/Taxco.png" class="element__pic" alt="Taxco" />
           </div>
           <div class="element__group">
-            <h2 class="element__name">Taxco</h2>
+            <div class="element__name-container">
+              <h2 class="element__name">Taxco</h2>
+            </div>
             <div class="element__vec-container">
               <img
                 src="./images/Like.png"
@@ -145,41 +157,48 @@
           </div>
         </div>
         <div class="element">
-          <div class="element__pic-container">
-            <img src="./images/Tulum.png" class="element_pic" alt="Tulum" />
+          <div class="element__piccontainer">
+            <img src="./images/Tulum.png" class="element__pic" alt="Tulum" />
           </div>
           <div class="element__group">
-            <h2 class="element__name">Tulum</h2>
+            <div class="element__name-container">
+              <h2 class="element__name">Tulum</h2>
+            </div>
             <div class="element__vec-container">
               <img
                 src="./images/Like.png"
-                class="element__vector"
-                alt="Vector"
+                class="element__like"
+                alt="vector like"
               />
             </div>
           </div>
         </div>
       </div>
-      <div class="form form_hidden">
-        <div class="form__container">
-          <h2 class="form__heading">Editar perfil</h2>
-          <form class="form__container_ctrl_texts">
-            <fieldset class="form__fieldset">
+      <div class="popup popup_hidden">
+        <div class="popup__container">
+          <h2 class="popup__heading">Editar perfil</h2>
+          <form
+            class="popup__form"
+            id="popup__form"
+            method="post"
+            onsubmit="manejaEnviar"
+          >
+            <fieldset class="popup__fieldset">
               <input
                 type="text"
-                class="form__box"
+                class="popup__name"
                 id="nombre"
                 placeholder="Nombre"
                 required
               />
               <input
                 type="text"
-                class="form__box"
+                class="popup__profession"
                 id="acerca"
                 placeholder="Acerca de mí"
                 required
               />
-              <button type="submit" class="form__button">Guardar</button>
+              <button type="submit" class="popup__button">Guardar</button>
             </fieldset>
           </form>
         </div>
@@ -188,20 +207,7 @@
         <div class="footer__author">&copy; 2025. Jerjes Molina</div>
       </footer>
     </div>
-    <script>
-      let botonEditar = document.querySelector(".profile__boton-edit");
-      let textoAutor = document.querySelector(".profile__info__name");
-      let profesion = document.querySelector(".profile__info__profession");
-      let formaEdicion = document.querySelector(".form");
 
-      function despliegaEdicionPerfil() {
-        // formaEdicion.classList.remove("form_hidden");
-
-        formaEdicion.classList.add("form_display");
-        // console.log("Se debe estar viendo el formulario del perfil");
-      }
-
-      botonEditar.addEventListener("click", despliegaEdicionPerfil);
-    </script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
