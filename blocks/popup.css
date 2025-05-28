@@ -21,13 +21,20 @@
   left: 30vw;
   background-color: white;
   width: 35vw;
-  height: 70vh;
+  height: 75vh;
   border: 1px aqua solid;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   margin: auto;
   gap: 20px;
+}
+.popup__cerrar {
+  width: 17px;
+  height: 15px;
+  position: relative;
+  top: -20px;
+  left: 35vw;
 }
 .popup__heading {
   font-family: Inter;

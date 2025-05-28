@@ -66,7 +66,11 @@
               <h2 class="element__name">Acapulco</h2>
             </div>
             <div class="element__like-container">
-              <img src="./images/Like.png" class="element__like" alt="Vector" />
+              <img
+                src="./images/Like.png"
+                class="element__like"
+                alt="Imagen like blanca"
+              />
             </div>
           </div>
         </div>
@@ -156,13 +160,14 @@
       </div>
       <div class="popup popup_hidden">
         <div class="popup__container">
+          <img
+            src="./images/BotonCerrar.png"
+            class="popup__cerrar"
+            alt="boton para cerrar la ventana emergente"
+          />
+
           <h2 class="popup__heading">Editar perfil</h2>
-          <form
-            class="popup__form"
-            id="popup__form"
-            method="post"
-            onsubmit="manejaEnviar"
-          >
+          <form class="popup__form" id="popup__form" method="post">
             <fieldset class="popup__fieldset">
               <input
                 type="text"
