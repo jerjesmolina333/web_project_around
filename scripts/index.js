@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       textoAcerca.value = profesion.textContent;
     });
     imagenCerrar.addEventListener("click", function () {
-      debugger;
+      // debugger;
       formaEdicion.classList.remove("popup_opened");
       formaEdicion.classList.add("popup_hidden");
     });
@@ -82,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Manejo del botón de edición de usuario:
 
   function despliegaEdicionPerfil() {
-    alert("Desplegar edición");
     formaEdicion.classList.add("popup_opened");
     let nombre = document.querySelector(".profile__name");
     let profesion = document.querySelector(".profile__profession");
