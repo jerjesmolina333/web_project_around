@@ -60,18 +60,11 @@
   padding-left: 10px;
 }
 
-.element__vec-container {
+.element__like-container {
   margin: 0;
   padding-top: 25px;
   padding-right: 8px;
   /* border: 1px green solid;/ */
-}
-.element__vec-container_dark {
-  margin: 0;
-  height: 25px;
-  /* padding-top: 30px; */
-  padding-left: 10px;
-  background-color: rgba(79, 79, 129, 0.8);
 }
 
 /* Contenido responsivo */
@@ -86,7 +79,7 @@
   .element__name {
     font-size: 12px;
   }
-  .element__vec-container {
+  .element__like-container {
     padding-top: 10px;
   }
 }

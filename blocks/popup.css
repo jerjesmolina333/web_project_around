@@ -16,15 +16,13 @@
 }
 
 .popup__container {
-  width: 90%;
-  height: 90%;
   position: absolute;
   top: 10vh;
   left: 30vw;
   background-color: white;
   width: 35vw;
-  height: 55vh;
-  /* border: 1px aqua solid; */
+  height: 70vh;
+  border: 1px aqua solid;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -40,13 +38,7 @@
   color: black;
   margin-left: 3vw;
 }
-/* .popup__texts {
-  font-family: Inter;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: 0%;
-} */
+
 .popup__button {
   font-family: Inter;
   font-weight: normal;
