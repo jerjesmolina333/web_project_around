@@ -1,13 +1,6 @@
-const textoAutor = document.querySelector(".profile__info__name");
 const profesion = document.querySelector(".profile__info__profession");
 const formaEdicion = document.querySelector(".popup");
-// const botonesLike = document.querySelectorAll(".element__vec-container");
-const botonEditContainer = document.querySelector(
-  ".profile__botonedit-container"
-);
-const botonEditar = document.querySelector(".profile__boton-edit");
 const imagenEditar = document.querySelector(".profile__edit-image");
-const botonGuardar = document.querySelector(".popup__button");
 const imagenLike = document.querySelector(".element__like");
 const imagenCerrar = document.querySelector(".popup__cerrar");
 
@@ -21,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imagenEditar.addEventListener("mouseenter", function () {
       imagenEditar.src = "./images/EditButton2.png";
     });
+    // debugger;
     imagenEditar.addEventListener("mouseleave", function () {
       imagenEditar.src = originalEditSrc;
     });
