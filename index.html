@@ -52,119 +52,16 @@
         </div>
       </div>
 
-      <div class="elements">
-        <div class="element">
-          <div class="element__piccontainer">
-            <img
-              src="./images/Acapulco.png"
-              class="element__pic"
-              alt="Acapulco"
-            />
-          </div>
-          <div class="element__group">
-            <div class="element__name-container">
-              <h2 class="element__name">Acapulco</h2>
-            </div>
-            <div class="element__like-container">
-              <img
-                src="./images/Like.png"
-                class="element__like"
-                alt="Imagen like blanca"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="element">
-          <div class="element__piccontainer">
-            <img
-              src="./images/Guanajuato.png"
-              class="element__pic"
-              alt="Guanajuato"
-            />
-          </div>
-          <div class="element__group">
-            <div class="element__name-container">
-              <h2 class="element__name">Guanajuato</h2>
-            </div>
-            <div class="element__like-container">
-              <img src="./images/Like.png" class="element__like" alt="Vector" />
-            </div>
-          </div>
-        </div>
-        <div class="element">
-          <div class="element__piccontainer">
-            <img
-              src="./images/Peña Bernal.png"
-              class="element__pic"
-              alt="Peña de Barnal"
-            />
-          </div>
-          <div class="element__group">
-            <div class="element__name-container">
-              <h2 class="element__name">Peña de Bernal</h2>
-            </div>
-            div>
-            <div class="element__like-container">
-              <img src="./images/Like.png" class="element__like" alt="Vector" />
-            </div>
-          </div>
-        </div>
-        <div class="element">
-          <div class="element__piccontainer">
-            <img
-              src="./images/Puebla.png"
-              class="element__pic"
-              alt="Imagen de Puebla"
-            />
-          </div>
-          <div class="element__group">
-            <div class="element__name-container">
-              <h2 class="element__name">Puebla</h2>
-            </div>
-            div>
-            <div class="element__like-container">
-              <img src="./images/Like.png" class="element__like" alt="Vector" />
-            </div>
-          </div>
-        </div>
-        <div class="element">
-          <div class="element__piccontainer">
-            <img src="./images/Taxco.png" class="element__pic" alt="Taxco" />
-          </div>
-          <div class="element__group">
-            <div class="element__name-container">
-              <h2 class="element__name">Taxco</h2>
-            </div>
-            <div class="element__like-container">
-              <img src="./images/Like.png" class="element__like" alt="Vector" />
-            </div>
-          </div>
-        </div>
-        <div class="element">
-          <div class="element__piccontainer">
-            <img src="./images/Tulum.png" class="element__pic" alt="Tulum" />
-          </div>
-          <div class="element__group">
-            <div class="element__name-container">
-              <h2 class="element__name">Tulum</h2>
-            </div>
-            <div class="element__like-container">
-              <img
-                src="./images/Like.png"
-                class="element__like"
-                alt="vector like"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="elements"></div>
       <div class="popup popup_hidden">
         <div class="popup__container">
-          <img
-            src="./images/BotonCerrar.png"
-            class="popup__cerrar"
-            alt="boton para cerrar la ventana emergente"
-          />
+          <div class="popup-cerrar__container">
+            <img
+              src="./images/BotonCerrar.png"
+              class="popup__cerrarEP"
+              alt="boton para cerrar la ventana emergente"
+            />
+          </div>
 
           <h2 class="popup__heading">Editar perfil</h2>
           <form class="popup__form" id="popup__form" method="post">
@@ -188,10 +85,65 @@
           </form>
         </div>
       </div>
+      <div class="popup-new-place popup_hidden">
+        <div class="popup__container">
+          <div class="popup-cerrar__container">
+            <img
+              src="./images/BotonCerrar.png"
+              class="popup__cerrarNP"
+              alt="boton para cerrar la ventana emergente"
+            />
+          </div>
+          <h2 class="popup__heading">New Place</h2>
+          <form class="popup__form" method="post">
+            <fieldset class="popup__fieldset">
+              <input
+                type="text"
+                class="popup__name"
+                id="np__title"
+                placeholder="Title"
+                required
+              />
+              <input
+                type="text"
+                class="popup__name"
+                id="np-image"
+                placeholder="Image URL"
+                required
+              />
+              <button type="submit" class="popup__button">Save</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
       <footer class="footer">
         <div class="footer__author">&copy; 2025. Jerjes Molina</div>
       </footer>
     </div>
+    <template id="element">
+      <div class="element-container">
+        <div class="element__piccontainer">
+          <img src="" class="element__pic" alt="Pic description" />
+          <img
+            src="./images/Trash.svg"
+            class="element__trash"
+            alt="Trash icon"
+          />
+        </div>
+        <div class="element__group">
+          <div class="element__name-container">
+            <h2 class="element__name">Name</h2>
+          </div>
+          <div class="element__like-container">
+            <img
+              src="./images/Like.png"
+              class="element__like"
+              alt="Imagen like blanca"
+            />
+          </div>
+        </div>
+      </div>
+    </template>
 
     <script src="./scripts/index.js"></script>
   </body>
