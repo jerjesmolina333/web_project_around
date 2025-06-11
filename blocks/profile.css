@@ -39,6 +39,7 @@
 }
 .profile__name-container {
   /* border: 1px aqua solid; */
+  width: 20vw;
   display: flex;
   flex-direction: column;
   row-gap: 12px;

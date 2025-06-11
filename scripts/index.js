@@ -6,6 +6,7 @@ const imagenEditar = document.querySelector(".profile__edit-image");
 const imagenCerrarEP = document.querySelector(".popup__cerrarEP");
 const imagenCerrarNP = document.querySelector(".popup__cerrarNP");
 const imagenBotonPlus = document.querySelector(".profile__plus");
+let imagenDesplegada = false;
 
 const initialCards = [
   {
@@ -35,27 +36,31 @@ const initialCards = [
 ];
 function agregaPropsImg(img) {
   img.addEventListener("click", function () {
-    const url = img.src;
-    // const elementPopup = document.querySelector("");
-    const imagenDespl = document.querySelector(".imagen__display");
-    const imagenTemplate = document.querySelector("#imagen").content;
-    const imagenElement = imagenTemplate
-      .querySelector(".popup")
-      .cloneNode(true);
-    imagenElement.querySelector(".imagen__pic").src = url;
-    imagenElement
-      .querySelector(".popup__cerrarIMG")
-      .addEventListener("click", function () {
-        const padre1 = this.parentElement;
-        const padre2 = padre1.parentElement;
-        const padre3 = padre2.parentElement;
-        const padre4 = padre3.parentElement;
-        padre1.remove();
-        padre2.remove();
-        padre3.remove();
-        padre4.remove();
-      });
-    imagenDespl.append(imagenElement);
+    if (!imagenDesplegada) {
+      const url = img.src;
+
+      const imagenDespl = document.querySelector(".imagen__display");
+      const imagenTemplate = document.querySelector("#imagen").content;
+      const imagenElement = imagenTemplate
+        .querySelector(".popup")
+        .cloneNode(true);
+      imagenElement.querySelector(".imagen__pic").src = url;
+      imagenElement
+        .querySelector(".popup__cerrarIMG")
+        .addEventListener("click", function () {
+          const padre1 = this.parentElement;
+          const padre2 = padre1.parentElement;
+          const padre3 = padre2.parentElement;
+          const padre4 = padre3.parentElement;
+          padre1.remove();
+          padre2.remove();
+          padre3.remove();
+          imagenDesplegada = false;
+          return;
+        });
+      imagenDespl.append(imagenElement);
+      imagenDesplegada = true;
+    }
   });
 }
 
@@ -71,7 +76,8 @@ function createCard(card) {
   cardElement.querySelector(".element__pic").alt = card.name;
   // debugger;
   agregaPropsImg(imagen);
-  // cardElement.querySelector(".element__pic").addEventListener("click");
+  imagenDesplegada = false;
+
   cardElement
     .querySelector(".element__trash")
     .addEventListener("click", function () {
@@ -168,12 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
   imagenCerrarNP.addEventListener("click", function () {
     formaNewPlace.classList.remove("popup_opened");
     formaNewPlace.classList.add("popup_hidden");
-  });
-
-  // Este ciclo le agrega a cada imagen el evento para que al dar click
-  // en la imagen, se abra la ventana para verla completa:
-  document.querySelectorAll(".element__pic").forEach(function (img) {
-    agregaPropsImg(img);
   });
 
   document.querySelectorAll(".element__like").forEach(function (img) {
