@@ -63,6 +63,7 @@
   width: 25px;
   height: 25px;
 }
+
 popup__cerrarIMG {
   width: 25px;
   height: 25px;
@@ -110,7 +111,8 @@ popup__cerrarIMG {
   margin-top: 30px;
 }
 .popup__button:hover {
-  border: 2px rgb(0, 110, 255) solid;
+  /* border: 2px rgb(0, 110, 255) solid; */
+  background-color: #595959;
 }
 .popup__fieldset {
   border: 0;

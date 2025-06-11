@@ -110,6 +110,9 @@
   text-align: center;
   /* margin-top: 20px; */
 }
+.profile__plus-container_solid {
+  border: 2px gray solid;
+}
 
 .profile__plus {
   margin-top: 10px;

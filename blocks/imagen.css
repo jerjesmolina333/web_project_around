@@ -1,8 +1,6 @@
 .imagen__display {
   width: 40vw;
   height: 90vh;
-  /* border: 1px aqua solid; */
-  /* position: absolute; */
   margin: auto;
   z-index: 2;
 }

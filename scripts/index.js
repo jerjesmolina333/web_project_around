@@ -93,7 +93,6 @@ function createCard(card) {
 function cargaImagenesInic(initialCards) {
   const cardsContainer = document.querySelector(".elements");
   initialCards.forEach((card) => {
-    // debugger;
     let cardElement = createCard(card);
     cardsContainer.append(cardElement);
   });
@@ -125,6 +124,19 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       false
     );
+  });
+
+  imagenBotonPlus.addEventListener("mouseenter", function () {
+    const contenedorBoton = document.querySelector(".profile__plus-container");
+    contenedorBoton.classList.add("profile__plus-container_solid");
+    imagenBotonPlus.src = "./images/BotonCerrar2.png";
+  });
+
+  imagenBotonPlus.addEventListener("mouseleave", function () {
+    const contenedorBoton = document.querySelector(".profile__plus-container");
+    contenedorBoton.classList.remove("profile__plus-container_solid");
+    contenedorBoton.classList.add("profile__plus-container");
+    imagenBotonPlus.src = "./images/BotonCerrar.png";
   });
 
   imagenEditar.addEventListener("click", function () {
@@ -179,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".element__like").forEach(function (img) {
     let liked = false;
     img.addEventListener("mouseenter", function () {
-      if (!liked) img.src = "./images/Like2.png";
+      if (!liked) img.src = "./images/LikeHover.png";
     });
 
     img.addEventListener("mouseleave", function () {
