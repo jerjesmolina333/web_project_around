@@ -53,67 +53,73 @@
       </div>
 
       <div class="elements"></div>
-      <div class="popup popup_hidden">
-        <div class="popup__container">
-          <div class="popup-cerrar__container">
-            <img
-              src="./images/BotonCerrar.png"
-              class="popup__cerrarEP"
-              alt="boton para cerrar la ventana emergente"
-            />
-          </div>
+      <div class="imagen__display"></div>
+      <div class="popup-edit-profile popup_hidden">
+        <div class="popup">
+          <div class="popup__containerEP">
+            <div class="popup-cerrar__container">
+              <img
+                src="./images/BotonCerrar.png"
+                class="popup__cerrarEP"
+                alt="boton para cerrar la ventana emergente"
+              />
+            </div>
 
-          <h2 class="popup__heading">Editar perfil</h2>
-          <form class="popup__form" id="popup__form" method="post">
-            <fieldset class="popup__fieldset">
-              <input
-                type="text"
-                class="popup__name"
-                id="nombre"
-                placeholder="Nombre"
-                required
-              />
-              <input
-                type="text"
-                class="popup__profession"
-                id="acerca"
-                placeholder="Acerca de mí"
-                required
-              />
-              <button type="submit" class="popup__button">Guardar</button>
-            </fieldset>
-          </form>
+            <form class="popup__form" id="popup__form" method="post">
+              <h2 class="popup__heading">Editar perfil</h2>
+              <fieldset class="popup__fieldset">
+                <input
+                  type="text"
+                  class="popup__name"
+                  id="nombre"
+                  placeholder="Nombre"
+                  required
+                />
+                <input
+                  type="text"
+                  class="popup__profession"
+                  id="acerca"
+                  placeholder="Acerca de mí"
+                  required
+                />
+                <button type="submit" class="popup__button">Guardar</button>
+              </fieldset>
+            </form>
+          </div>
         </div>
       </div>
       <div class="popup-new-place popup_hidden">
-        <div class="popup__container">
-          <div class="popup-cerrar__container">
-            <img
-              src="./images/BotonCerrar.png"
-              class="popup__cerrarNP"
-              alt="boton para cerrar la ventana emergente"
-            />
+        <div class="popup">
+          <div class="popup__containerNP">
+            <div class="popup-cerrar__container">
+              <img
+                src="./images/BotonCerrar.png"
+                class="popup__cerrarNP"
+                alt="boton para cerrar la ventana emergente"
+              />
+            </div>
+
+            <form class="popup__form" method="post">
+              <h2 class="popup__heading">New Place</h2>
+              <fieldset class="popup__fieldset">
+                <input
+                  type="text"
+                  class="popup__name"
+                  id="np__title"
+                  placeholder="Title"
+                  required
+                />
+                <input
+                  type="text"
+                  class="popup__name"
+                  id="np-image"
+                  placeholder="Image URL"
+                  required
+                />
+                <button type="submit" class="popup__button">Save</button>
+              </fieldset>
+            </form>
           </div>
-          <h2 class="popup__heading">New Place</h2>
-          <form class="popup__form" method="post">
-            <fieldset class="popup__fieldset">
-              <input
-                type="text"
-                class="popup__name"
-                id="np__title"
-                placeholder="Title"
-                required
-              />
-              <input
-                type="text"
-                class="popup__name"
-                id="np-image"
-                placeholder="Image URL"
-                required
-              />
-              <button type="submit" class="popup__button">Save</button>
-            </fieldset>
-          </form>
         </div>
       </div>
       <footer class="footer">
@@ -141,6 +147,22 @@
               alt="Imagen like blanca"
             />
           </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="imagen">
+      <div class="popup">
+        <div class="imagen__display">
+          <div class="popup-cerrar__containerIMG">
+            <img
+              src="./images/BotonCerrar.png"
+              class="popup__cerrarIMG"
+              alt="boton para cerrar la ventana emergente"
+            />
+          </div>
+
+          <img src="" class="imagen__pic" alt="Imagen de usuario" />
         </div>
       </div>
     </template>
