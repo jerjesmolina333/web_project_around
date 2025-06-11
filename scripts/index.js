@@ -46,11 +46,14 @@ function agregaPropsImg(img) {
     imagenElement
       .querySelector(".popup__cerrarIMG")
       .addEventListener("click", function () {
-        // imagenDespl.classList.add("popup_hidden");
         const padre1 = this.parentElement;
         const padre2 = padre1.parentElement;
         const padre3 = padre2.parentElement;
+        const padre4 = padre3.parentElement;
+        padre1.remove();
+        padre2.remove();
         padre3.remove();
+        padre4.remove();
       });
     imagenDespl.append(imagenElement);
   });
