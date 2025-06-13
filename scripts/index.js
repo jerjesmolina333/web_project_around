@@ -67,7 +67,7 @@ function agregaPropsImg(img) {
 function createCard(card) {
   const elementTemplate = document.querySelector("#element").content;
   const cardElement = elementTemplate
-    .querySelector(".element-container")
+    .querySelector(".element__container")
     .cloneNode(true);
 
   const imagen = cardElement.querySelector(".element__pic");

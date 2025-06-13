@@ -1,6 +1,9 @@
 .footer {
   height: 10vh;
+  max-height: 10vh;
+  width: 80vw;
   margin: 0;
+  /* border: 1px yellow solid; */
 }
 .footer__author {
   font-family: Inter;
@@ -10,4 +13,19 @@
   letter-spacing: 0;
   padding-left: 10vw;
   margin-top: 20px;
+}
+
+@media screen AND (max-width: 400px) {
+  .footer {
+    height: 10vh;
+    width: 70vw;
+    max-height: 5vh;
+  }
+}
+@media screen AND (max-width: 320px) {
+  .footer {
+    height: 10vh;
+    width: 70vw;
+    max-height: 5vh;
+  }
 }

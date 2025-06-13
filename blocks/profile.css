@@ -17,6 +17,15 @@
   justify-content: space-between;
 }
 
+.profile__user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  row-gap: 10px;
+  /* border: 1px aqua solid; */
+  padding-left: 30px;
+}
+
 .profile__photo-container {
   width: 10vw;
   height: 10vw;
@@ -29,14 +38,7 @@
   margin-top: -15px;
   margin-left: 40px;
 }
-.profile__user {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  row-gap: 10px;
-  /* border: 1px aqua solid; */
-  padding-left: 30px;
-}
+
 .profile__name-container {
   /* border: 1px aqua solid; */
   width: 20vw;
@@ -125,28 +127,15 @@
   }
 }
 
-@media screen AND (max-width: 750px) {
-  .profile__info__name {
-    font-size: 20px;
-  }
-}
-
-@media screen AND (max-width: 700px) {
+@media screen AND (max-width: 780px) {
   .profile__info {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
-  }
-  .profile__info__name {
-    font-size: 13px;
-  }
-  .profile__info__profession {
-    font-size: 10px;
-    /* text-align: center; */
+    padding-left: 0;
   }
   .profile__plus-container {
-    width: 100px;
-    height: 35px;
-    text-align: center;
+    width: 30px;
+    height: 25px;
     margin-top: 0;
     margin-left: 0;
   }
@@ -155,49 +144,43 @@
   }
 }
 
-@media screen AND (max-width: 480px) {
-  .profile__info__name {
-    font-size: 8px;
-  }
-  .profile__info__profession {
-    font-size: 5px;
-    /* text-align: center; */
-  }
-}
-
-@media screen AND (max-width: 422px) {
-  .profile__info__name {
-    font-size: 6px;
-  }
-  .profile__info__profession {
-    font-size: 4px;
-    /* text-align: center; */
-  }
-}
-
-@media screen AND (max-width: 320px) {
+@media screen AND (max-width: 400px) {
   .profile__info {
     flex-direction: column;
-  }
-  .profile__photo {
-    max-width: 50vw;
-    max-height: 50vw;
-    padding: 0 auto;
-  }
-  .profile__photo-container {
-    width: 50vw;
-    height: 50vw;
-    padding: 0 auto;
+    align-items: flex-start;
+    width: 80vw;
+    max-width: 80vw;
+    padding-left: 0;
+    left: 20px;
   }
   .profile__user {
+    justify-content: left;
+    column-gap: 0;
+    padding-left: 0;
+    width: 80vw;
+    max-width: 80vw;
     padding: 0;
   }
-  .profile__info_name {
-    font-size: 15px;
+  .profile__photo {
+    max-width: 40px;
+    max-height: 40px;
+    padding: 0 auto;
+    margin-top: 0;
+    margin-left: 0;
   }
-  .profile__info__profession {
-    font-size: 12px;
-    text-align: center;
+  .profile__photo-container {
+    width: 42px;
+    max-width: 42px;
+    height: 20px;
+    max-height: 20px;
+    padding: 0 auto;
+    /* border: aqua 1px solid; */
+  }
+  .profile__name {
+    font-size: 8px;
+  }
+  .profile__profession {
+    font-size: 6px;
   }
   .profile__boton-edit {
     width: 20px;
@@ -207,7 +190,99 @@
     margin-left: 15px;
   }
   .profile__plus-container {
-    width: 95%;
-    margin: 4vh auto;
+    width: 25px;
+    max-width: 25px;
+    height: 30px;
+    max-height: 30px;
+    margin-left: 0;
+    padding-left: 0;
+    right: -40px;
+  }
+  .profile__edit-image {
+    left: -20px;
+  }
+}
+
+@media screen AND (max-width: 320px) {
+  .profile__info {
+    flex-direction: column;
+    width: 75%;
+  }
+  .profile__user {
+    width: 70%;
+    max-width: 70%;
+  }
+  .profile__photo {
+    max-width: 40px;
+    max-height: 40px;
+    padding: 0 auto;
+    margin-top: 0;
+    margin-left: 0;
+  }
+  .profile__photo-container {
+    width: 42px;
+    max-width: 42px;
+    height: 20px;
+    max-height: 20px;
+    padding: 0 auto;
+    /* border: aqua 1px solid; */
+  }
+  .profile__name {
+    font-size: 10px;
+  }
+  .profile__profession {
+    font-size: 8px;
+  }
+
+  .profile__boton-edit {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    margin-top: 1px;
+    margin-left: 15px;
+  }
+  .profile__plus-container {
+    width: 25px;
+    max-width: 25px;
+    height: 30px;
+    max-height: 30px;
+    /* margin: 4vh auto; */
+    border: 1px aqua solid;
+  }
+}
+@media screen AND (max-width: 300px) {
+  .profile__photo {
+    max-width: 20px;
+    max-height: 20px;
+  }
+  .profile__photo-container {
+    width: 22px;
+    max-width: 22px;
+    height: 20px;
+    max-height: 20px;
+  }
+  .profile__user {
+    width: 70%;
+    max-width: 70%;
+  }
+  .profile__name {
+    font-size: 6px;
+  }
+  .profile__profession {
+    font-size: 4px;
+  }
+  .profile__boton-edit {
+    width: 10px;
+    height: 10px;
+    margin-top: 1px;
+    margin-left: 5px;
+  }
+  .profile__plus-container {
+    width: 10px;
+    max-width: 10px;
+    height: 10px;
+    max-height: 10px;
+    /* margin: 4vh auto; */
+    /* border: 1px aqua solid; */
   }
 }
