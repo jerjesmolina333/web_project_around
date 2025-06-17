@@ -31,7 +31,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px aqua solid;
 }
 .element__piccontainer {
   width: 25vw;
@@ -41,9 +40,6 @@
   /* display: flex;
   flex-direction: column;
   align-content: center; */
-  border: 1px red solid;
-  margin-bottom: 0;
-  padding: 0;
 }
 .element__pic {
   height: 100vh;
@@ -66,8 +62,7 @@
 }
 .element__group {
   width: 100%;
-  border: 1px violet solid;
-  /* max-width: 25vw; */
+  /* border: 1px violet solid; */
   max-width: 100%;
   display: flex;
   justify-content: space-between;
@@ -99,7 +94,7 @@
 
 .element__like-container {
   margin: 0;
-  padding-top: 25px;
+  padding-top: 15px;
   padding-right: 8px;
 }
 
