@@ -175,6 +175,9 @@
   .element__like-container {
     padding-top: 10px;
   }
+  .element__group {
+    height: 40px;
+  }
 }
 @media screen AND (max-width: 400px) {
   .elements {
