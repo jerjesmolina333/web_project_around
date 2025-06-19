@@ -3,6 +3,7 @@
   height: 90vh;
   margin: auto;
   z-index: 2;
+  border: 1px aqua solid;
 }
 .imagen__pic {
   max-width: 35vw;
