@@ -55,6 +55,7 @@
 }
 .element__trash {
   position: relative;
+  cursor: pointer;
   width: 18px;
   height: 19px;
   left: 23vw;

@@ -4,11 +4,12 @@
 // Carga inicial del documento
 document.addEventListener("DOMContentLoaded", function () {
   const profesion = document.querySelector(".profile__info__profession");
-  const formaEdicion = document.querySelector(".popup-edit-profile");
+  const formaEdicion = document.getElementById("editProfileModal");
   const formaNewPlace = document.querySelector(".popup-new-place");
   const imagenEditar = document.querySelector(".profile__edit-image");
-  // const imagenLike = document.querySelector(".element__like");
+
   const imagenCerrarEP = document.querySelector(".popup__cerrarEP");
+  const closeModalBtn = document.querySelector(".modal__close");
   const imagenCerrarNP = document.querySelector(".popup__cerrarNP");
   const imagenBotonPlus = document.querySelector(".profile__plus");
   const editButton = document.querySelector(".profile__boton-edit");
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   function agregaPropsImg(img) {
     img.addEventListener("click", function () {
+      debugger;
       if (!imagenDesplegada) {
         const url = img.src;
 
@@ -67,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         imagenDespl.append(imagenElement);
         imagenDesplegada = true;
+        imagenDespl.classList.add("popup_opened");
       }
     });
   }
@@ -81,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cardElement.querySelector(".element__name").textContent = card.name;
     cardElement.querySelector(".element__pic").src = card.link;
     cardElement.querySelector(".element__pic").alt = card.name;
-    // debugger;
+
     agregaPropsImg(imagen);
     imagenDesplegada = false;
 
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .addEventListener("click", function () {
         const padre1 = this.parentElement;
         const padre2 = padre1.parentElement;
-        // debugger;
+
         padre2.remove();
       });
 
@@ -106,8 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function procesaClickEditarPerfil() {
-    formaEdicion.classList.add("popup_opened");
-    // debugger;
     let nombre = document.querySelector(".profile__name");
     let profesion = document.querySelector(".profile__profession");
     let textoNombre = document.querySelector(".popup__name");
@@ -115,6 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let textoAcerca = document.querySelector(".popup__profession");
     textoAcerca.value = profesion.textContent;
+
+    // Desplegar la ventana modal:
+    editProfileModal.style.display = "flex";
+    document.body.classList.add("modal-open");
 
     const contEP = document.querySelector(".popup-edit-profile");
     const primerCampoTexto = document.querySelector(".popup__name");
@@ -125,8 +130,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var keyValue = event.key;
 
         if (keyValue == "Escape") {
-          formaEdicion.classList.remove("popup_opened");
-          formaEdicion.classList.add("popup_hidden");
+          editProfileModal.style.display = "none";
+          document.body.classList.remove("modal-open");
         }
       },
       false
@@ -142,11 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
     nombrePerfil.textContent = nombre.value;
     let profesionPerfil = document.querySelector(".profile__profession");
     profesionPerfil.textContent = profesión.value;
-
-    debugger;
-    editButton.removeEventListener("click", procesaClickEditarPerfil);
-    editButton.addEventListener("click", procesaClickEditarPerfil);
-    formaEdicion.removeEventListener("submit", attendSubmitProfile);
 
     formaEdicion.style.display = "none";
   }
@@ -176,22 +176,22 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   imagenBotonPlus.addEventListener("mouseenter", function () {
+    imagenBotonPlus.style.cursor = "pointer";
     const contenedorBoton = document.querySelector(".profile__plus-container");
     contenedorBoton.classList.add("profile__plus-container_solid");
-    imagenBotonPlus.src = "./images/BotonCerrar2.png";
+    imagenBotonPlus.src = "./images/AddButton2.png";
   });
 
   imagenBotonPlus.addEventListener("mouseleave", function () {
     const contenedorBoton = document.querySelector(".profile__plus-container");
     contenedorBoton.classList.remove("profile__plus-container_solid");
     contenedorBoton.classList.add("profile__plus-container");
-    imagenBotonPlus.src = "./images/BotonCerrar.png";
+    imagenBotonPlus.src = "./images/AddButton.png";
   });
 
   if (imagenEditar) {
     const originalEditSrc = imagenEditar.src;
     imagenEditar.addEventListener("mouseenter", function () {
-      // debugger;
       imagenEditar.src = "./images/EditButton2.png";
     });
 
@@ -204,10 +204,11 @@ document.addEventListener("DOMContentLoaded", function () {
     editButton.addEventListener("click", procesaClickEditarPerfil);
   }
 
-  imagenCerrarEP.addEventListener("click", function () {
-    formaEdicion.classList.remove("popup_opened");
-    formaEdicion.classList.add("popup_hidden");
+  closeModalBtn.addEventListener("click", function () {
+    editProfileModal.style.display = "none";
+    document.body.classList.remove("modal-open");
   });
+
   imagenCerrarNP.addEventListener("click", function () {
     formaNewPlace.classList.remove("popup_opened");
     formaNewPlace.classList.add("popup_hidden");
@@ -243,7 +244,6 @@ document.addEventListener("DOMContentLoaded", function () {
   formaEdicion.addEventListener("submit", attendSubmitProfile);
 
   formaNewPlace.addEventListener("submit", function (evt) {
-    // debugger;
     const cardsContainer = document.querySelector(".elements");
     evt.preventDefault();
     let nombre = formaNewPlace.querySelector("#np__title").value;

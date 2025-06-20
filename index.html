@@ -33,7 +33,7 @@
             </div>
 
             <div class="profile__botonedit-container">
-              <button class="profile__boton-edit">
+              <button class="profile__boton-edit" aria-label="Editar perfil">
                 <img
                   src="./images/EditButton.png"
                   class="profile__edit-image"
@@ -57,17 +57,25 @@
       <footer class="footer">
         <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 8.3</div>
       </footer>
+
+      <!-- Modal de despliegue de imagen -->
       <div class="imagen__display popup_hidden"></div>
-      <div class="popup-edit-profile popup_hidden">
+
+      <!-- Modal de edición de perfil-->
+      <div
+        class="popup-edit-profile"
+        id="editProfileModal"
+        style="display: none"
+      >
         <div class="popup">
           <div class="popup__containerEP">
-            <div class="popup-cerrar__container">
+            <button class="modal__close" aria-label="Cerrar edición">
               <img
                 src="./images/BotonCerrar.png"
                 class="popup__cerrarEP"
                 alt="boton para cerrar la ventana emergente"
               />
-            </div>
+            </button>
 
             <form class="popup__form" id="popup__form" method="post">
               <h2 class="popup__heading">Editar perfil</h2>
@@ -86,12 +94,14 @@
                   placeholder="Acerca de mí"
                   required
                 />
-                <button type="submit" class="popup__button">Guardar</button>
+                <button type="submit" class="modal__save">Guardar</button>
               </fieldset>
             </form>
           </div>
         </div>
       </div>
+
+      <!-- Ventana modal para el nuevo lugar -->
       <div class="popup-new-place popup_hidden">
         <div class="popup">
           <div class="popup__containerNP">

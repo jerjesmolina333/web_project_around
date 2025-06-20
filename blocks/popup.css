@@ -64,9 +64,19 @@
   height: 25px;
 }
 
-popup__cerrarIMG {
+.popup__cerrarIMG {
   width: 25px;
   height: 25px;
+}
+.modal__close {
+  position: relative;
+  width: 35px;
+  height: 30px;
+  left: 400px;
+  top: -40px;
+  background-color: #000;
+  border-style: none;
+  /* border: 1px red solid; */
 }
 .popup-cerrar__container {
   position: relative;
@@ -80,7 +90,7 @@ popup__cerrarIMG {
   position: relative;
   width: 25px;
   height: 25px;
-  left: 450px;
+  left: 35vw;
   top: -5px;
   /* border: 1px red solid; */
 }
@@ -110,6 +120,26 @@ popup__cerrarIMG {
   border-radius: 5px;
   margin-top: 30px;
 }
+.modal__save {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.modal__save:hover {
+  background: #222;
+  opacity: 0.5;
+}
+
 .popup__button:hover {
   /* border: 2px rgb(0, 110, 255) solid; */
   background-color: #595959;
