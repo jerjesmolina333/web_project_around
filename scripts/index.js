@@ -43,15 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
   function agregaPropsImg(img) {
-<<<<<<< HEAD
     img.addEventListener("click", function () {
-=======
-    img.addEventListener("click", function (evt) {
       const posXClick = "" + evt.clientX + "px";
       const posYClick = "" + evt.clientY + "px";
       // console.log("posXClick: " + posXClick + " posYClick: " + posYClick);
       debugger;
->>>>>>> fix/fondo_obscuro
       if (!imagenDesplegada) {
         const url = img.src;
         // debugger;
