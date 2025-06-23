@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   function agregaPropsImg(img) {
     img.addEventListener("click", function () {
-      debugger;
       if (!imagenDesplegada) {
         const url = img.src;
 
