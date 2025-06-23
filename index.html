@@ -59,7 +59,9 @@
       </footer>
 
       <!-- Modal de despliegue de imagen -->
-      <div class="imagen__display popup_hidden"></div>
+      <div class="imagen__display popup_hidden">
+        <div class="popup"></div>
+      </div>
 
       <!-- Modal de edición de perfil-->
       <div
@@ -138,6 +140,20 @@
       </div>
     </div>
 
+    <template id="imagen">
+      <div class="imagen__container">
+        <div class="popup-cerrar__containerIMG">
+          <img
+            src="./images/BotonCerrar.png"
+            class="popup__cerrarIMG"
+            alt="boton para cerrar la ventana emergente"
+          />
+        </div>
+
+        <img src="" class="imagen__pic" alt="Imagen por desplegar" />
+      </div>
+    </template>
+
     <template id="element">
       <div class="element__container">
         <div class="element__piccontainer">
@@ -159,22 +175,6 @@
               alt="Imagen like blanca"
             />
           </div>
-        </div>
-      </div>
-    </template>
-
-    <template id="imagen">
-      <div class="popup">
-        <div class="imagen__display">
-          <div class="popup-cerrar__containerIMG">
-            <img
-              src="./images/BotonCerrar.png"
-              class="popup__cerrarIMG"
-              alt="boton para cerrar la ventana emergente"
-            />
-          </div>
-
-          <img src="" class="imagen__pic" alt="Imagen de usuario" />
         </div>
       </div>
     </template>

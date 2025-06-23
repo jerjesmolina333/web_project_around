@@ -1,9 +1,14 @@
 .imagen__display {
-  width: 40vw;
-  height: 90vh;
+  width: 100%;
+  height: 100%;
   margin: auto;
   z-index: 2;
+  position: absolute;
   /* border: 1px aqua solid; */
+}
+.imagen__container {
+  position: absolute;
+  /* border: 1px red solid; */
 }
 .imagen__pic {
   max-width: 35vw;
