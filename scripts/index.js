@@ -5,6 +5,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const profesion = document.querySelector(".profile__info__profession");
   const formaEdicion = document.getElementById("editProfileModal");
+  const popupImagen = document.querySelector(".popup-imagen");
   const formaNewPlace = document.querySelector(".popup-new-place");
   const imagenEditar = document.querySelector(".profile__edit-image");
 
@@ -42,19 +43,34 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
   function agregaPropsImg(img) {
+<<<<<<< HEAD
     img.addEventListener("click", function () {
+=======
+    img.addEventListener("click", function (evt) {
+      const posXClick = "" + evt.clientX + "px";
+      const posYClick = "" + evt.clientY + "px";
+      // console.log("posXClick: " + posXClick + " posYClick: " + posYClick);
+      debugger;
+>>>>>>> fix/fondo_obscuro
       if (!imagenDesplegada) {
         const url = img.src;
-
+        // debugger;
         const imagenDespl = document.querySelector(".imagen__display");
         const imagenTemplate = document.querySelector("#imagen").content;
         const imagenElement = imagenTemplate
-          .querySelector(".popup")
+          .querySelector(".imagen__container")
           .cloneNode(true);
+
+        imagenDespl.classList.add("popup_opened");
+
         imagenElement.querySelector(".imagen__pic").src = url;
+
+        // const popup = imagenTemplate.querySelector(".popup").cloneNode(true);
         imagenElement
           .querySelector(".popup__cerrarIMG")
           .addEventListener("click", function () {
+            debugger;
+            const thisImagenDespl = document.querySelector(".imagen__display");
             const padre1 = this.parentElement;
             const padre2 = padre1.parentElement;
             const padre3 = padre2.parentElement;
@@ -62,11 +78,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             padre1.remove();
             padre2.remove();
-            padre3.remove();
+            // padre3.remove();
+            thisImagenDespl.classList.remove("popup_opened");
+            // thisImagenDespl.ClassList.add("popup_hidden");
             imagenDesplegada = false;
             return;
           });
+
         imagenDespl.append(imagenElement);
+        // debugger;
+        imagenElement.style.top = posYClick;
+        imagenElement.style.left = posXClick;
         imagenDesplegada = true;
         imagenDespl.classList.add("popup_opened");
       }

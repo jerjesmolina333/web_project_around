@@ -38,9 +38,6 @@
   max-width: 25vw;
   height: calc(25vw * 1.1);
   max-height: calc(25vw * 1.1);
-  /* display: flex;
-  flex-direction: column;
-  align-content: center; */
 }
 .element__pic {
   height: 100vh;
@@ -58,7 +55,7 @@
   cursor: pointer;
   width: 18px;
   height: 19px;
-  left: 23vw;
+  left: 24vw;
   top: calc(-26vw);
   z-index: 1;
 }
