@@ -43,11 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
   function agregaPropsImg(img) {
-    img.addEventListener("click", function () {
+    img.addEventListener("click", function (evt) {
       const posXClick = "" + evt.clientX + "px";
       const posYClick = "" + evt.clientY + "px";
       // console.log("posXClick: " + posXClick + " posYClick: " + posYClick);
-      debugger;
+      // debugger;
       if (!imagenDesplegada) {
         const url = img.src;
         // debugger;
@@ -65,18 +65,16 @@ document.addEventListener("DOMContentLoaded", function () {
         imagenElement
           .querySelector(".popup__cerrarIMG")
           .addEventListener("click", function () {
-            debugger;
+            // debugger;
             const thisImagenDespl = document.querySelector(".imagen__display");
             const padre1 = this.parentElement;
             const padre2 = padre1.parentElement;
             const padre3 = padre2.parentElement;
-            const padre4 = padre3.parentElement;
 
             padre1.remove();
             padre2.remove();
             // padre3.remove();
             thisImagenDespl.classList.remove("popup_opened");
-            // thisImagenDespl.ClassList.add("popup_hidden");
             imagenDesplegada = false;
             return;
           });
