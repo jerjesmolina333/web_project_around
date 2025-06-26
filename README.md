@@ -1,4 +1,7 @@
 # Tripleten web_project_around
 
-En esta parte del proyecto se cargan las imágenes de una lista definida en el script. Los botones Like con forma de corazón en cada tarjeta ya son interactivos
-Ya se pueden crear nuevas tarjetas y se pueden borrar dando click en el ícono del basurero incluido en cada imagen.
+Ya se arregló el problema de los botes de basura flotantes, también el tamaño y la disposición de los
+botones de Like y Nueva imagen. Ya solo aparece un scroll horizontal a los 150 pixels de ancho, lo cual
+me parece que ya es un tamaño de pantalla no comercial a la fecha.
+La imagen al desplegarse ya aparece en el lugar en donde se dió click, aunque eso no estaba especificado en el
+brief.
