@@ -34,20 +34,3 @@
     height: 16;
   }
 }
-@media screen AND (max-width: 320px) {
-  .header__logo {
-    content: url("../images/LogoPeq.png");
-    width: 79px;
-    height: 16;
-  }
-}
-@media screen AND (max-width: 150px) {
-  .header__line {
-    /* Line */
-    position: absolute;
-    width: 70%;
-    height: 0px;
-    left: 10vw;
-    top: 100px;
-  }
-}
