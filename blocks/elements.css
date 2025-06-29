@@ -70,3 +70,16 @@
   width: 18px;
   height: 18px;
 }
+/********************************/
+/* Controles para responsividad */
+
+@media screen AND (max-width: 300px) {
+  .element__container {
+    width: 175px;
+  }
+}
+@media screen AND (max-width: 210px) {
+  .element__container {
+    width: 150px;
+  }
+}

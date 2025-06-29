@@ -25,17 +25,19 @@
         />
 
         <div class="profile__name-container">
-          <p class="profile__name">Jackes Cousteau</p>
+          <div class="contNombre">
+            <p class="profile__name">Jackes Cousteau</p>
+            <button class="profile__boton-edit" aria-label="Editar perfil">
+              <img
+                src="./images/EditButton.png"
+                class="profile__edit-image"
+                alt="Edit Button"
+              />
+            </button>
+          </div>
           <p class="profile__profession">Explorador</p>
         </div>
 
-        <button class="profile__boton-edit" aria-label="Editar perfil">
-          <img
-            src="./images/EditButton.png"
-            class="profile__edit-image"
-            alt="Edit Button"
-          />
-        </button>
         <button class="profile__boton-plus" aria-label="Agrega imagen">
           <img
             src="./images/AddButton.png"
@@ -48,11 +50,11 @@
       <div class="elements"></div>
 
       <footer class="footer">
-        <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 8.7</div>
+        <div class="footer__author">&copy; 2025. Jerjes Molina Version 8.9</div>
       </footer>
 
       <!-- Modal de despliegue de imagen -->
-      <div class="imagen__display popup_hidden">
+      <div class="imagen__display" style="display: none">
         <div class="popup"></div>
       </div>
 

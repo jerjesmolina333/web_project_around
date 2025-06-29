@@ -107,10 +107,11 @@ document.addEventListener("DOMContentLoaded", function () {
     cardElement
       .querySelector(".element__trash")
       .addEventListener("click", function () {
+        debugger;
         const padre1 = this.parentElement;
         const padre2 = padre1.parentElement;
 
-        padre2.remove();
+        padre1.remove();
       });
 
     return cardElement;
@@ -186,8 +187,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var keyValue = event.key;
 
         if (keyValue == "Escape") {
-          // formaNewPlace.classList.remove("popup_opened");
-          // formaNewPlace.classList.add("popup_hidden");
           formaNewPlace.style.display = "none";
           document.body.classList.remove("modal-open");
         }
@@ -197,49 +196,69 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function procesaMouseEnterBotPlus() {
-    botonPlus.style.cursor = "pointer";
-    const boton = document.querySelector(".profile__boton-plus");
-    boton.classList.add("profile__boton-plus_solid");
+    botonPlus.classList.add("profile__boton-plus_solid");
     imagenBotonPlus.src = "./images/AddButton2.png";
   }
 
   function procesaMouseleaveBotPlus() {
-    const boton = document.querySelector(".profile__boton-plus");
-    boton.classList.remove("profile__boton-plus_solid");
-    boton.classList.add("profile__plus-container");
+    botonPlus.classList.remove("profile__boton-plus_solid");
+    botonPlus.classList.add("profile__plus-container");
     imagenBotonPlus.src = "./images/AddButton.png";
+  }
+
+  function procesaMouseenterEditar() {
+    // imagenEditar.style.cursor = "pointer";
+    const boton = document.querySelector(".profile__boton-edit");
+    imagenEditar.src = "./images/EditButton2.png";
+  }
+
+  function procesaSubmitNewPlace() {
+    const cardsContainer = document.querySelector(".elements");
+    evt.preventDefault();
+    let nombre = formaNewPlace.querySelector("#np__title").value;
+    let thisLink = formaNewPlace.querySelector("#np-image").value;
+    let thisCard = { name: nombre, link: thisLink };
+    let cardElement = createCard(thisCard);
+
+    cardsContainer.prepend(cardElement);
+    // formaNewPlace.classList.remove("popup_opened");
+    // formaNewPlace.classList.add("popup_hidden");
+    formaNewPlace.style.display = "none";
+    document.body.classList.remove("modal-open");
   }
 
   ////////////////////////////////
   //// CÓDIGO:
 
   cargaImagenesInic(initialCards);
-
-  if (imagenEditar && botonPlus) {
+  if (imagenEditar && botonPlus && imagenCerrarNP && imagenCerrarNP) {
     imagenEditar.addEventListener("click", procesaClickEditarPerfil);
+    imagenEditar.addEventListener("mouseenter", procesaMouseenterEditar);
+
+    imagenEditar.addEventListener("mouseleave", function () {
+      imagenEditar.src = "./images/EditButton.png";
+    });
     botonPlus.addEventListener("click", procesaClickNuevoLugar);
+    botonPlus.addEventListener("mouseenter", procesaMouseEnterBotPlus);
+    botonPlus.addEventListener("mouseleave", procesaMouseleaveBotPlus);
+
+    imagenCerrarNP.addEventListener("mouseenter", function () {
+      imagenCerrarNP.src = "./images/BotonCerrar2.png";
+    });
+    imagenCerrarNP.addEventListener("mouseleave", function () {
+      imagenCerrarNP.src = "./images/BotonCerrar.png";
+    });
+    imagenCerrarEP.addEventListener("mouseenter", function () {
+      imagenCerrarEP.src = "./images/BotonCerrar2.png";
+    });
+    imagenCerrarEP.addEventListener("mouseleave", function () {
+      imagenCerrarEP.src = "./images/BotonCerrar.png";
+    });
   }
 
-  botonPlus.addEventListener("mouseenter", procesaMouseEnterBotPlus);
-
-  botonPlus.addEventListener("mouseleave", procesaMouseleaveBotPlus);
-
-  imagenEditar.addEventListener("mouseenter", function () {
-    // debugger;
-    imagenEditar.style.cursor = "pointer";
-    const boton = document.querySelector(".profile__boton-edit");
-    // boton.classList.add("profile__boton-plus_solid");
-    imagenEditar.src = "./images/EditButton2.png";
-  });
-
-  imagenEditar.addEventListener("mouseleave", function () {
-    const boton = document.querySelector(".profile__boton-edit");
-    imagenEditar.src = "./images/EditButton.png";
-  });
-
   imagenCerrarNP.addEventListener("click", function () {
-    formaNewPlace.classList.remove("popup_opened");
-    formaNewPlace.classList.add("popup_hidden");
+    formaNewPlace.style.display = "none";
+    document.body.classList.remove("modal-open");
   });
 
   imagenCerrarEP.addEventListener("click", function () {
@@ -271,24 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  //Agregar el evento Submit a la ventana emergente
-  // de edición del perfil:
-
+  //Agregar el evento Submit a las ventanas emergentes:
   formaEdicion.addEventListener("submit", attendSubmitProfile);
-
-  formaNewPlace.addEventListener("submit", function (evt) {
-    debugger;
-    const cardsContainer = document.querySelector(".elements");
-    evt.preventDefault();
-    let nombre = formaNewPlace.querySelector("#np__title").value;
-    let thisLink = formaNewPlace.querySelector("#np-image").value;
-    let thisCard = { name: nombre, link: thisLink };
-    let cardElement = createCard(thisCard);
-
-    cardsContainer.prepend(cardElement);
-    // formaNewPlace.classList.remove("popup_opened");
-    // formaNewPlace.classList.add("popup_hidden");
-    formaNewPlace.style.display = "none";
-    document.body.classList.remove("modal-open");
-  });
+  formaNewPlace.addEventListener("submit", procesaSubmitNewPlace);
 });
