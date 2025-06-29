@@ -9,8 +9,10 @@
 .imagen__container {
   position: absolute;
   /* border: 1px red solid; */
+  display: flex;
 }
 .imagen__pic {
-  max-width: 35vw;
+  /* max-width: 35vw; */
+  width: 300px;
   z-index: 2;
 }

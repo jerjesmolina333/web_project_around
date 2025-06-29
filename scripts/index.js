@@ -46,46 +46,49 @@ document.addEventListener("DOMContentLoaded", function () {
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
     },
   ];
+
   function agregaPropsImg(img) {
     img.addEventListener("click", function (evt) {
+      // debugger;
       const posXClick = "" + evt.clientX + "px";
-      const posYClick = "" + evt.clientY + "px";
-
+      const posYClick = "" + (evt.clientY + 200) + "px";
+      // console.log("Pos Y: " + posYClick);
       if (!imagenDesplegada) {
         const url = img.src;
-        // debugger;
+
         const imagenDespl = document.querySelector(".imagen__display");
+        const fondoNegro = document.querySelector(".popup");
         const imagenTemplate = document.querySelector("#imagen").content;
-        const imagenElement = imagenTemplate
+        const imagenContainer = imagenTemplate
           .querySelector(".imagen__container")
           .cloneNode(true);
 
-        imagenDespl.classList.add("popup_opened");
-        imagenElement.querySelector(".imagen__pic").src = url;
+        imagenDespl.style.display = "flex";
+        document.body.classList.add("modal-open");
+        imagenContainer.querySelector(".imagen__pic").src = url;
 
-        imagenElement
+        imagenContainer
           .querySelector(".popup__cerrarIMG")
           .addEventListener("click", function () {
-            // debugger;
             const thisImagenDespl = document.querySelector(".imagen__display");
             const padre1 = this.parentElement;
-            const padre2 = padre1.parentElement;
-            const padre3 = padre2.parentElement;
-
+            // const padre2 = padre1.parentElement;
             padre1.remove();
-            padre2.remove();
-            // padre3.remove();
-            thisImagenDespl.classList.remove("popup_opened");
+
+            thisImagenDespl.style.display = "none";
+            document.body.classList.remove("modal-open");
             imagenDesplegada = false;
             return;
           });
 
-        imagenDespl.append(imagenElement);
-        // debugger;
-        imagenElement.style.top = posYClick;
-        imagenElement.style.left = posXClick;
+        imagenDespl.append(imagenContainer);
+        imagenContainer.style.top = posYClick;
+        imagenContainer.style.left = posXClick;
+        imagenDespl.style.top = 0;
+        imagenDespl.style.left = 0;
         imagenDesplegada = true;
-        imagenDespl.classList.add("popup_opened");
+        imagenDespl.style.display = "flex";
+        document.body.classList.add("modal-open");
       }
     });
   }
@@ -107,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
     cardElement
       .querySelector(".element__trash")
       .addEventListener("click", function () {
-        debugger;
         const padre1 = this.parentElement;
         const padre2 = padre1.parentElement;
 
@@ -159,11 +161,9 @@ document.addEventListener("DOMContentLoaded", function () {
         var keyValue = event.key;
 
         if (keyValue == "Escape") {
-          debugger;
           contEP.style.display = "none";
           document.body.classList.remove("modal-open");
-          // contEP.style.display = "none";
-          // contEP.classList.remove("modal-open");
+
           if (imagenEditar) {
             imagenEditar.addEventListener("click", procesaClickEditarPerfil);
           }
@@ -212,17 +212,17 @@ document.addEventListener("DOMContentLoaded", function () {
     imagenEditar.src = "./images/EditButton2.png";
   }
 
-  function procesaSubmitNewPlace() {
-    const cardsContainer = document.querySelector(".elements");
+  function procesaSubmitNewPlace(evt) {
+    debugger;
     evt.preventDefault();
+    const cardsContainer = document.querySelector(".elements");
+
     let nombre = formaNewPlace.querySelector("#np__title").value;
     let thisLink = formaNewPlace.querySelector("#np-image").value;
     let thisCard = { name: nombre, link: thisLink };
     let cardElement = createCard(thisCard);
 
     cardsContainer.prepend(cardElement);
-    // formaNewPlace.classList.remove("popup_opened");
-    // formaNewPlace.classList.add("popup_hidden");
     formaNewPlace.style.display = "none";
     document.body.classList.remove("modal-open");
   }
