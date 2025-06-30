@@ -92,6 +92,19 @@
     width: 90%;
   }
 }
+@media screen AND (max-width: 350px) {
+  .profile {
+    width: 180px;
+    margin: 0;
+  }
+  .contNombre {
+    width: 180px;
+  }
+  .profile__edit-image {
+    width: 14px;
+    height: 14px;
+  }
+}
 @media screen AND (max-width: 235px) {
   .profile {
     width: 180px;
