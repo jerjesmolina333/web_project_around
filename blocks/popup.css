@@ -30,7 +30,7 @@
   gap: 20px;
   z-index: 2;
 }
-.popup__form {
+.form {
   border: 0;
   /* Pone el margen y el padding dentro del contenedor: */
   box-sizing: border-box;
@@ -43,21 +43,21 @@
   width: 25px;
   height: 25px;
   left: 200px;
-  top: -30px;
+  top: -70px;
 }
 .popup__cerrarNP {
   position: relative;
   width: 25px;
   height: 25px;
-  left: 395px;
-  top: -25px;
+  left: 180px;
+  top: -45px;
 }
 
 .popup__cerrarIMG {
   position: relative;
   width: 25px;
   height: 25px;
-  left: 350px;
+  left: 330px;
   top: -30px;
 }
 
@@ -88,7 +88,7 @@
   border-radius: 5px;
   margin-top: 30px;
 }
-.modal__save {
+.form__submit {
   width: 100%;
   background: #000;
   color: #fff;
@@ -102,15 +102,29 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-.modal__save:hover {
+.form__submit:hover {
   background: #222;
   opacity: 0.5;
+}
+.popup__button_disabled {
+  width: 100%;
+  background: white;
+  color: gray;
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 1.1rem;
+  border: 1px gray solid;
+  border-radius: 4px;
+  padding: 12px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .popup__button:hover {
   background-color: #595959;
 }
-.popup__fieldset {
+.form__set {
   border: 0;
   display: flex;
   flex-direction: column;
@@ -120,7 +134,7 @@
   /* border: 2px red solid; */
 }
 
-.popup__text-box {
+.popup__input {
   font-family: Inter;
   font-weight: normal;
   font-size: 20px;
@@ -132,6 +146,14 @@
   background-color: transparent;
   width: 350px;
   height: 8vh;
+}
+
+.popup__input_type_error {
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1;
+  color: red;
 }
 
 .popup__form-box {
@@ -160,20 +182,21 @@
     left: 155px;
     top: -35px;
   }
-  .popup__form {
+  .form {
     width: 300px;
     height: 300px;
   }
-  .popup__fieldset {
+  .form__set {
     width: 280px;
     max-width: 280px;
   }
-  .popup__text-box {
+  .popup__input {
     width: 230px;
   }
   .popup__button {
     width: 180px;
     height: 30px;
+  }
 }
 @media screen AND (max-width: 350px) {
   .popup__container {
@@ -192,24 +215,22 @@
     left: 110px;
     top: -20px;
   }
-  .popup__form {
+  .form {
     width: 230px;
     height: 230px;
   }
-  .popup__fieldset {
+  .form__set {
     width: 210px;
     max-width: 210px;
   }
-  .popup__text-box {
+  .popup__input {
     width: 150px;
+    font-size: 12px;
   }
   .popup__heading {
     font-size: 16px;
   }
-  .popup__text-box {
-    font-size: 12px;
-  }
-  .modal__save {
+  .form__submit {
     width: 150px;
     height: 20px;
     font-size: 0.7rem;

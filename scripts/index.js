@@ -3,9 +3,7 @@
 // ===========================
 // Carga inicial del documento
 document.addEventListener("DOMContentLoaded", function () {
-  // const profesion = document.querySelector(".profile__info__profession");
-
-  // const popupImagen = document.querySelector(".popup-imagen");
+  let formaDesplegada = "none";
   const contEP = document.querySelector(".popup-edit-profile");
   const formaNewPlace = document.querySelector(".popup-new-place");
   const formaEdicion = document.querySelector(".popup-edit-profile");
@@ -18,7 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const imagenEditar = document.querySelector(".profile__edit-image");
 
   const editButton = document.querySelector(".profile__boton-edit");
+
   let imagenDesplegada = false;
+  const paramsValidation = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+  };
 
   const initialCards = [
     {
@@ -49,46 +56,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function agregaPropsImg(img) {
     img.addEventListener("click", function (evt) {
-      // debugger;
       const posXClick = "" + evt.clientX + "px";
       const posYClick = "" + (evt.clientY + 200) + "px";
-      // console.log("Pos Y: " + posYClick);
+
       if (!imagenDesplegada) {
         const url = img.src;
 
-        const imagenDespl = document.querySelector(".imagen__display");
-        const fondoNegro = document.querySelector(".popup");
+        const modalDisplay = document.querySelector(".imagen__display");
+        modalDisplay.style.display = "flex";
+        document.body.classList.add("modal-open");
+
         const imagenTemplate = document.querySelector("#imagen").content;
         const imagenContainer = imagenTemplate
           .querySelector(".imagen__container")
           .cloneNode(true);
 
-        imagenDespl.style.display = "flex";
-        document.body.classList.add("modal-open");
         imagenContainer.querySelector(".imagen__pic").src = url;
+        imagenContainer.style.top = posYClick;
+        imagenContainer.style.left = "250px";
+
+        modalDisplay.append(imagenContainer);
+
+        imagenDesplegada = true;
 
         imagenContainer
           .querySelector(".popup__cerrarIMG")
-          .addEventListener("click", function () {
-            const thisImagenDespl = document.querySelector(".imagen__display");
-            const padre1 = this.parentElement;
-            // const padre2 = padre1.parentElement;
+          .addEventListener("click", function (evt) {
+            const elem = evt.target;
+            const padre1 = elem.parentElement;
+            const padre2 = padre1.parentElement;
             padre1.remove();
-
-            thisImagenDespl.style.display = "none";
-            document.body.classList.remove("modal-open");
+            padre2.style.display = "none";
             imagenDesplegada = false;
             return;
           });
 
-        imagenDespl.append(imagenContainer);
-        imagenContainer.style.top = posYClick;
-        imagenContainer.style.left = posXClick;
-        imagenDespl.style.top = 0;
-        imagenDespl.style.left = 0;
-        imagenDesplegada = true;
-        imagenDespl.style.display = "flex";
-        document.body.classList.add("modal-open");
+        const fondoPage = document.querySelector(".popup");
+        fondoPage.addEventListener("click", (evt) => {
+          const elemento = evt.target.classList[0];
+          console.log("elemento: " + elemento);
+          if (elemento === "popup") {
+            const elem = evt.target;
+            const padre1 = elem.parentElement;
+            const imagenContainer =
+              document.querySelector(".imagen__container");
+            imagenContainer.remove();
+            padre1.style.display = "none";
+            imagenDesplegada = false;
+            return;
+          }
+        });
       }
     });
   }
@@ -171,6 +188,15 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       false
     );
+    const fondoNegro = document.querySelector(".page");
+    fondoNegro.addEventListener("click", (evt) => {
+      const elemento = evt.target.classList[0];
+      // console.log(elemento);
+      if (elemento === "popup") {
+        contEP.style.display = "none";
+        document.body.classList.remove("modal-open");
+      }
+    });
   }
 
   function procesaClickNuevoLugar() {
@@ -193,6 +219,15 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       false
     );
+    const fondoNegro = document.querySelector(".page");
+    fondoNegro.addEventListener("click", (evt) => {
+      const elemento = evt.target.classList[0];
+      // console.log(elemento);
+      if (elemento === "popup") {
+        formaNewPlace.style.display = "none";
+        document.body.classList.remove("modal-open");
+      }
+    });
   }
 
   function procesaMouseEnterBotPlus() {
@@ -293,4 +328,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //Agregar el evento Submit a las ventanas emergentes:
   formaEdicion.addEventListener("submit", attendSubmitProfile);
   formaNewPlace.addEventListener("submit", procesaSubmitNewPlace);
+
+  enableValidation(paramsValidation);
 });

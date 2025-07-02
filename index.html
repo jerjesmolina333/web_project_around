@@ -7,6 +7,14 @@
     <meta name="keywords" content="TripleTen Proyecto8 JavaScript" />
     <meta name="author" content="Jerjes Molina" />
     <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://practicum-content.s3.us-west-1.amazonaws.com/web-code/form-validation/lesson-5/moved_index.css"
+    /> -->
 
     <title>Proyect Around</title>
   </head>
@@ -50,7 +58,7 @@
       <div class="elements"></div>
 
       <footer class="footer">
-        <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 8.9.2</div>
+        <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 9.1</div>
       </footer>
 
       <!-- Modal de despliegue de imagen -->
@@ -70,22 +78,33 @@
 
             <form class="popup__form" method="post">
               <h2 class="popup__heading">Editar perfil</h2>
-              <fieldset class="popup__fieldset">
+              <fieldset class="form__set">
                 <input
                   type="text"
-                  class="popup__text-box"
+                  class="popup__input"
                   id="nombre"
                   placeholder="Nombre"
+                  minlength="2"
+                  maxlength="40"
                   required
                 />
+                <span class="popup__input_type_error nombre-error"></span>
                 <input
                   type="text"
-                  class="popup__text-box"
+                  class="popup__input"
                   id="acerca"
                   placeholder="Acerca de mí"
+                  minlength="2"
+                  maxlength="200"
                   required
                 />
-                <button type="submit" class="modal__save">Guardar</button>
+                <span class="popup__input_type_error acerca-error"></span>
+                <button
+                  type="submit"
+                  class="popup__button form__submit_inactive"
+                >
+                  Guardar
+                </button>
               </fieldset>
             </form>
           </div>
@@ -104,22 +123,31 @@
 
             <form class="popup__form" method="post">
               <h2 class="popup__heading">Nuevo Lugar</h2>
-              <fieldset class="popup__fieldset">
+              <fieldset class="form__set">
                 <input
                   type="text"
-                  class="popup__text-box"
+                  class="popup__input"
                   id="np__title"
                   placeholder="Título"
+                  minlength="2"
+                  maxlength="30"
                   required
                 />
+                <span class="popup__input_type_error np__title-error"></span>
                 <input
                   type="url"
-                  class="popup__text-box"
+                  class="popup__input"
                   id="np-image"
                   placeholder="Enlace a la imagen"
                   required
                 />
-                <button type="submit" class="popup__button">Crear</button>
+                <span class="popup__input_type_error np-image-error"></span>
+                <button
+                  type="submit"
+                  class="popup__button form__submit_inactive"
+                >
+                  Crear
+                </button>
               </fieldset>
             </form>
           </div>
@@ -157,5 +185,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
