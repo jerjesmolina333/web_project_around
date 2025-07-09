@@ -16,6 +16,12 @@
   overflow-x: hidden;
 } */
 
+.popup_is-opened {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+}
+
 .popup__container {
   position: absolute;
   top: 5%;
@@ -70,8 +76,6 @@
   letter-spacing: 0%;
   color: black;
   margin-left: 19px;
-  position: relative;
-  margin-top: 1px;
   padding-top: 0;
   position: relative;
   top: -20px;

@@ -13,6 +13,8 @@
 }
 .imagen__pic {
   /* max-width: 35vw; */
-  width: 600px;
+  max-width: 600px;
+  height: auto;
+  width: auto;
   z-index: 2;
 }

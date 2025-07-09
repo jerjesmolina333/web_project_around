@@ -331,3 +331,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
   enableValidation(paramsValidation);
 });
+
+class Card {
+  constructor(data, cardSelector) {
+    this._image = data.image;
+    this._name = data.name;
+  }
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".element__container")
+      .cloneNode(true);
+
+    return cardElement;
+  }
+  generateCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector(
+      ".element__pic"
+    ).style.src = `url(${this._image})`;
+    this._element.querySelector(".element__name").textContent = this._name;
+    return this._element;
+  }
+  _handleOpenPopup(evt) {
+    // popupImage.src = this._image;
+    const posYClick = "" + (evt.clientY + 200) + "px";
+    if (!imagenDesplegada) {
+      const modalDisplay = document.querySelector(".imagen__display");
+      // popupElement.classList.add("popup_is-opened");
+      modalDisplay.style.display = "flex";
+      document.body.classList.add("modal-open");
+      imagenContainer = document
+        .querySelector("#imagen")
+        .content.querySelector(".imagen__container")
+        .cloneNode(true);
+      imagenContainer.querySelector(".imagen__pic").src = this._image;
+      imagenContainer.style.top = posYClick;
+      imagenContainer.style.left = "250px";
+      modalDisplay.append(imagenContainer);
+
+      imagenDesplegada = true;
+      imagenContainer.addEventListener("click", (evt) => {
+        this._handleClosePopup(evt);
+      });
+    }
+  }
+  _handleClosePopup(evt) {
+    const elem = evt.target;
+    const padre1 = elem.parentElement;
+    const padre2 = padre1.parentElement;
+    padre1.remove();
+    padre2.style.display = "none";
+    imagenDesplegada = false;
+    return;
+  }
+}
+
+initialCards.forEach((item) => {
+  const elemento = new Card(item, "imagen__container");
+  const cardElement = elemento.generateCard();
+  document.querySelector(".elements").append(cardElement);
+});
