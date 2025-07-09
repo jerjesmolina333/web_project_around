@@ -4,6 +4,7 @@
 // Carga inicial del documento
 document.addEventListener("DOMContentLoaded", function () {
   let formaDesplegada = "none";
+  let elementTrashed = false;
   const contEP = document.querySelector(".popup-edit-profile");
   const formaNewPlace = document.querySelector(".popup-new-place");
   const formaEdicion = document.querySelector(".popup-edit-profile");
@@ -110,39 +111,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function createCard(card) {
-    const elementTemplate = document.querySelector("#element").content;
-    const cardElement = elementTemplate
-      .querySelector(".element__container")
-      .cloneNode(true);
+  // function createCard(card) {
+  //   const elementTemplate = document.querySelector("#element").content;
+  //   const cardElement = elementTemplate
+  //     .querySelector(".element__container")
+  //     .cloneNode(true);
 
-    const imagen = cardElement.querySelector(".element__pic");
-    cardElement.querySelector(".element__name").textContent = card.name;
-    cardElement.querySelector(".element__pic").src = card.link;
-    cardElement.querySelector(".element__pic").alt = card.name;
+  //   const imagen = cardElement.querySelector(".element__pic");
+  //   cardElement.querySelector(".element__name").textContent = card.name;
+  //   cardElement.querySelector(".element__pic").src = card.link;
+  //   cardElement.querySelector(".element__pic").alt = card.name;
 
-    agregaPropsImg(imagen);
-    imagenDesplegada = false;
+  //   agregaPropsImg(imagen);
+  //   imagenDesplegada = false;
 
-    cardElement
-      .querySelector(".element__trash")
-      .addEventListener("click", function () {
-        const padre1 = this.parentElement;
-        const padre2 = padre1.parentElement;
+  //   cardElement
+  //     .querySelector(".element__trash")
+  //     .addEventListener("click", function () {
+  //       const padre1 = this.parentElement;
+  //       const padre2 = padre1.parentElement;
 
-        padre1.remove();
-      });
+  //       padre1.remove();
+  //     });
 
-    return cardElement;
-  }
+  //   return cardElement;
+  // }
 
-  function cargaImagenesInic(initialCards) {
-    const cardsContainer = document.querySelector(".elements");
-    initialCards.forEach((card) => {
-      let cardElement = createCard(card);
-      cardsContainer.append(cardElement);
-    });
-  }
+  // function cargaImagenesInic(initialCards) {
+  //   const cardsContainer = document.querySelector(".elements");
+  //   initialCards.forEach((card) => {
+  //     let cardElement = createCard(card);
+  //     cardsContainer.append(cardElement);
+  //   });
+  // }
 
   function attendSubmitProfile(evt) {
     evt.preventDefault();
@@ -265,8 +266,91 @@ document.addEventListener("DOMContentLoaded", function () {
   ////////////////////////////////
   //// CÓDIGO:
 
-  cargaImagenesInic(initialCards);
-  if (imagenEditar && botonPlus && imagenCerrarNP && imagenCerrarNP) {
+  class Card {
+    constructor(data, cardSelector) {
+      this._image = data.link;
+      this._name = data.name;
+      this._cardSelector = cardSelector;
+    }
+    _getTemplate() {
+      const cardElement = document
+        .querySelector(this._cardSelector)
+        .content.querySelector(".element__container")
+        .cloneNode(true);
+
+      return cardElement;
+    }
+    _setEventListeners() {
+      this._element.addEventListener("click", (evt) => {
+        if (!elementTrashed) {
+          this._handleOpenPopup(evt);
+        } else {
+          elementTrashed = false;
+        }
+      });
+
+      this._element
+        .querySelector(".element__trash")
+        .addEventListener("click", (evt) => {
+          this._handleRemoveElement(evt);
+        });
+    }
+    generateCard() {
+      this._element = this._getTemplate();
+      this._element.querySelector(".element__pic").src = this._image;
+      this._element.querySelector(".element__name").textContent = this._name;
+      this._element.querySelector(".element__pic").alt = this._name;
+      this._setEventListeners();
+      elementTrashed = false;
+      return this._element;
+    }
+    _handleOpenPopup(evt) {
+      const posYClick = "" + (evt.clientY + 200) + "px";
+      if (!imagenDesplegada) {
+        const modalDisplay = document.querySelector(".imagen__display");
+        modalDisplay.style.display = "flex";
+        document.body.classList.add("modal-open");
+
+        const imagenTemplate = document.querySelector("#imagen").content;
+        const imagenContainer = imagenTemplate
+          .querySelector(".imagen__container")
+          .cloneNode(true);
+
+        imagenContainer.querySelector(".imagen__pic").src = this._image;
+        imagenContainer.style.top = posYClick;
+        imagenContainer.style.left = "100px";
+        modalDisplay.append(imagenContainer);
+
+        imagenDesplegada = true;
+        imagenContainer.addEventListener("click", (evt) => {
+          this._handleClosePopup(evt);
+        });
+      }
+    }
+    _handleClosePopup(evt) {
+      const elem = evt.target;
+      const padre1 = elem.parentElement;
+      const padre2 = padre1.parentElement;
+      padre1.remove();
+      padre2.style.display = "none";
+      imagenDesplegada = false;
+    }
+    _handleRemoveElement(evt) {
+      const element = evt.target;
+      const padre1 = element.parentElement;
+      padre1.remove();
+      elementTrashed = true;
+    }
+  }
+
+  initialCards.forEach((item) => {
+    const elemento = new Card(item, "#element");
+    const cardElement = elemento.generateCard();
+    document.querySelector(".elements").append(cardElement);
+  });
+
+  // cargaImagenesInic(initialCards);
+  if (imagenEditar && botonPlus && imagenCerrarEP && imagenCerrarNP) {
     imagenEditar.addEventListener("click", procesaClickEditarPerfil);
     imagenEditar.addEventListener("mouseenter", procesaMouseenterEditar);
 
@@ -283,23 +367,22 @@ document.addEventListener("DOMContentLoaded", function () {
     imagenCerrarNP.addEventListener("mouseleave", function () {
       imagenCerrarNP.src = "./images/BotonCerrar.png";
     });
+    imagenCerrarNP.addEventListener("click", function () {
+      formaNewPlace.style.display = "none";
+      document.body.classList.remove("modal-open");
+    });
     imagenCerrarEP.addEventListener("mouseenter", function () {
       imagenCerrarEP.src = "./images/BotonCerrar2.png";
     });
     imagenCerrarEP.addEventListener("mouseleave", function () {
       imagenCerrarEP.src = "./images/BotonCerrar.png";
     });
+
+    imagenCerrarEP.addEventListener("click", function () {
+      contEP.style.display = "none";
+      document.body.classList.remove("modal-open");
+    });
   }
-
-  imagenCerrarNP.addEventListener("click", function () {
-    formaNewPlace.style.display = "none";
-    document.body.classList.remove("modal-open");
-  });
-
-  imagenCerrarEP.addEventListener("click", function () {
-    contEP.style.display = "none";
-    document.body.classList.remove("modal-open");
-  });
 
   document.querySelectorAll(".element__like").forEach(function (img) {
     let liked = false;
@@ -330,65 +413,4 @@ document.addEventListener("DOMContentLoaded", function () {
   formaNewPlace.addEventListener("submit", procesaSubmitNewPlace);
 
   enableValidation(paramsValidation);
-});
-
-class Card {
-  constructor(data, cardSelector) {
-    this._image = data.image;
-    this._name = data.name;
-  }
-  _getTemplate() {
-    const cardElement = document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".element__container")
-      .cloneNode(true);
-
-    return cardElement;
-  }
-  generateCard() {
-    this._element = this._getTemplate();
-    this._element.querySelector(
-      ".element__pic"
-    ).style.src = `url(${this._image})`;
-    this._element.querySelector(".element__name").textContent = this._name;
-    return this._element;
-  }
-  _handleOpenPopup(evt) {
-    // popupImage.src = this._image;
-    const posYClick = "" + (evt.clientY + 200) + "px";
-    if (!imagenDesplegada) {
-      const modalDisplay = document.querySelector(".imagen__display");
-      // popupElement.classList.add("popup_is-opened");
-      modalDisplay.style.display = "flex";
-      document.body.classList.add("modal-open");
-      imagenContainer = document
-        .querySelector("#imagen")
-        .content.querySelector(".imagen__container")
-        .cloneNode(true);
-      imagenContainer.querySelector(".imagen__pic").src = this._image;
-      imagenContainer.style.top = posYClick;
-      imagenContainer.style.left = "250px";
-      modalDisplay.append(imagenContainer);
-
-      imagenDesplegada = true;
-      imagenContainer.addEventListener("click", (evt) => {
-        this._handleClosePopup(evt);
-      });
-    }
-  }
-  _handleClosePopup(evt) {
-    const elem = evt.target;
-    const padre1 = elem.parentElement;
-    const padre2 = padre1.parentElement;
-    padre1.remove();
-    padre2.style.display = "none";
-    imagenDesplegada = false;
-    return;
-  }
-}
-
-initialCards.forEach((item) => {
-  const elemento = new Card(item, "imagen__container");
-  const cardElement = elemento.generateCard();
-  document.querySelector(".elements").append(cardElement);
 });

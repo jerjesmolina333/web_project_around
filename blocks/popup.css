@@ -26,7 +26,7 @@
   position: absolute;
   top: 5%;
   width: 400px;
-  height: 350px;
+  height: 400px;
   background-color: white;
   border-radius: 7px;
   display: flex;
@@ -35,6 +35,7 @@
   align-items: center;
   gap: 20px;
   z-index: 2;
+  border: 1px aqua solid;
 }
 
 .form {
@@ -50,14 +51,14 @@
   width: 25px;
   height: 25px;
   left: 200px;
-  top: -74px;
+  top: -35px;
 }
 .popup__cerrarNP {
   position: relative;
   width: 25px;
   height: 25px;
   left: 180px;
-  top: -74px;
+  top: -35px;
 }
 
 .popup__cerrarIMG {
