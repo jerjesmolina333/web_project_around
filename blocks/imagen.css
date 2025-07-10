@@ -8,13 +8,21 @@
 }
 .imagen__container {
   position: absolute;
-  /* border: 1px red solid; */
   display: flex;
 }
 .imagen__pic {
-  /* max-width: 35vw; */
-  max-width: 600px;
+  max-width: 500px;
   height: auto;
   width: auto;
   z-index: 2;
+}
+@media screen AND (max-width: 700px) {
+  .imagen__pic {
+    max-width: 400px;
+  }
+}
+@media screen AND (max-width: 550px) {
+  .imagen__pic {
+    max-width: 300px;
+  }
 }

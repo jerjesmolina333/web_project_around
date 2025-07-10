@@ -64,7 +64,7 @@
   position: relative;
   width: 25px;
   height: 25px;
-  left: 600px;
+  left: 500px;
   top: -30px;
 }
 
@@ -171,6 +171,16 @@
   border: 0;
   margin: 0;
   top: 0;
+}
+@media screen AND (max-width: 700px) {
+  .popup__cerrarIMG {
+    left: 400px;
+  }
+}
+@media screen AND (max-width: 550px) {
+  .popup__cerrarIMG {
+    left: 305px;
+  }
 }
 
 @media screen AND (max-width: 440px) {

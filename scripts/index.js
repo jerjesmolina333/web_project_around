@@ -56,60 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  function agregaPropsImg(img) {
-    img.addEventListener("click", function (evt) {
-      const posXClick = "" + evt.clientX + "px";
-      const posYClick = "" + (evt.clientY + 200) + "px";
-
-      if (!imagenDesplegada) {
-        const url = img.src;
-
-        const modalDisplay = document.querySelector(".imagen__display");
-        modalDisplay.style.display = "flex";
-        document.body.classList.add("modal-open");
-
-        const imagenTemplate = document.querySelector("#imagen").content;
-        const imagenContainer = imagenTemplate
-          .querySelector(".imagen__container")
-          .cloneNode(true);
-
-        imagenContainer.querySelector(".imagen__pic").src = url;
-        imagenContainer.style.top = posYClick;
-        imagenContainer.style.left = "250px";
-
-        modalDisplay.append(imagenContainer);
-
-        imagenDesplegada = true;
-
-        imagenContainer
-          .querySelector(".popup__cerrarIMG")
-          .addEventListener("click", function (evt) {
-            const elem = evt.target;
-            const padre1 = elem.parentElement;
-            const padre2 = padre1.parentElement;
-            padre1.remove();
-            padre2.style.display = "none";
-            imagenDesplegada = false;
-            return;
-          });
-
-        const fondoPage = document.querySelector(".popup");
-        fondoPage.addEventListener("click", (evt) => {
-          const elemento = evt.target.classList[0];
-          console.log("elemento: " + elemento);
-          if (elemento === "popup") {
-            const elem = evt.target;
-            const padre1 = elem.parentElement;
-            const imagenContainer =
-              document.querySelector(".imagen__container");
-            imagenContainer.remove();
-            padre1.style.display = "none";
-            imagenDesplegada = false;
-            return;
-          }
-        });
-      }
-    });
+  function despliegaPopupImagen() {
+    console.log("==");
   }
 
   function createCard(card) {
@@ -123,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cardElement.querySelector(".element__pic").src = card.link;
     cardElement.querySelector(".element__pic").alt = card.name;
 
-    agregaPropsImg(imagen);
+    agregaPropsImg(evt, imagen, imagenDesplegada);
     imagenDesplegada = false;
 
     cardElement
@@ -264,4 +212,5 @@ import {
   procesaMouseenterEditar,
   procesaMouseEnterBotPlus,
   procesaMouseleaveBotPlus,
+  agregaPropsImg,
 } from "./utils.js";
