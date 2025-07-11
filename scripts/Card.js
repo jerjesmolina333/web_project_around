@@ -59,7 +59,7 @@ export class Card {
       this._handleClosePopup(evt);
     });
   }
-  _handleClosePopup(evt) {
+  _handleClosePopupK(evt) {
     const elem = evt.target;
     const padre1 = elem.parentElement;
     const padre2 = padre1.parentElement;

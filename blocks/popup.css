@@ -172,6 +172,7 @@
   margin: 0;
   top: 0;
 }
+
 @media screen AND (max-width: 700px) {
   .popup__cerrarIMG {
     left: 400px;

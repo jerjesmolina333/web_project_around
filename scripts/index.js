@@ -1,3 +1,15 @@
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import {
+  procesaClickNuevoLugar,
+  procesaClickEditarPerfil,
+  procesaMouseenterEditar,
+  procesaMouseEnterBotPlus,
+  procesaMouseleaveBotPlus,
+  agregaPropsImg,
+} from "./utils.js";
+
+// ===========================
 // ===========================
 // ===========================
 // ===========================
@@ -203,14 +215,3 @@ document.addEventListener("DOMContentLoaded", function () {
   formaEdicion.addEventListener("submit", attendSubmitProfile);
   formaNewPlace.addEventListener("submit", procesaSubmitNewPlace);
 });
-
-import { Card } from "./card.js";
-import { FormValidator } from "./validate.js";
-import {
-  procesaClickNuevoLugar,
-  procesaClickEditarPerfil,
-  procesaMouseenterEditar,
-  procesaMouseEnterBotPlus,
-  procesaMouseleaveBotPlus,
-  agregaPropsImg,
-} from "./utils.js";
