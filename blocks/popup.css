@@ -1,25 +1,111 @@
-.popup {
-  width: 100%;
-  height: 200%;
-  background-color: rgba(0, 0, 0, 0.8);
-  position: absolute;
+.modal-overlay {
+  position: fixed;
   top: 0;
   left: 0;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  height: 100%;
+  border: aqua 2px solid;
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
-/* body.modal-open {
+.modal {
+  position: absolute;
+  top: 100px;
+  left: 30vw;
+  border-radius: 20px;
+  margin: 0 auto;
+  max-width: 500px;
+  width: 90%;
+  color: white;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+.modal-overlay-hidden {
+  visibility: hidden;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+  color: white;
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.modal p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+body.modal-open {
   overflow-x: hidden;
-} */
+}
+
+.key-hint {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px 0;
+  border-left: 4px solid #ffd700;
+}
+
+.key-hint strong {
+  color: #ffd700;
+}
+/* Animación de pulso para el hint */
+.key-hint.pulse {
+  animation: pulseHint 1.5s ease-in-out;
+}
+
+@keyframes pulseHint {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
 
 .popup_is-opened {
   visibility: visible;
-  opacity: 1;
-  pointer-events: all;
+  /* opacity: 1;
+  pointer-events: all; */
 }
 
 .popup__container {

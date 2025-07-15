@@ -1,3 +1,5 @@
+import Popup from "./Popup.js";
+
 export class Card {
   constructor(data, cardSelector) {
     this._imageLink = data.link;
@@ -40,26 +42,32 @@ export class Card {
     return this._element;
   }
   _handleOpenPopup(evt) {
-    const posYClick = "" + (evt.clientY + 200) + "px";
-    const modalDisplay = document.querySelector(".imagen__display");
-    modalDisplay.style.display = "flex";
-    document.body.classList.add("modal-open");
-
-    const imagenTemplate = document.querySelector("#imagen").content;
-    const imagenContainer = imagenTemplate
-      .querySelector(".imagen__container")
-      .cloneNode(true);
-
-    imagenContainer.querySelector(".imagen__pic").src = this._imageLink;
-    imagenContainer.style.top = posYClick;
-    imagenContainer.style.left = "100px";
-    modalDisplay.append(imagenContainer);
-
-    imagenContainer.addEventListener("click", (evt) => {
-      this._handleClosePopup(evt);
+    const popup = new Popup({
+      popupSelector: "#modalOverlay",
+      imageLnk: this._imageLink,
     });
+
+    popup.open(evt);
+    // const posYClick = "" + (evt.clientY + 200) + "px";
+    // const modalDisplay = document.querySelector(".imagen__display");
+    // modalDisplay.style.display = "flex";
+    // document.body.classList.add("modal-open");
+
+    // const imagenTemplate = document.querySelector("#imagen").content;
+    // const imagenContainer = imagenTemplate
+    //   .querySelector(".imagen__container")
+    //   .cloneNode(true);
+
+    // imagenContainer.querySelector(".imagen__pic").src = this._imageLink;
+    // imagenContainer.style.top = posYClick;
+    // imagenContainer.style.left = "100px";
+    // modalDisplay.append(imagenContainer);
+
+    // imagenContainer.addEventListener("click", (evt) => {
+    //   this._handleClosePopup(evt);
+    // });
   }
-  _handleClosePopupK(evt) {
+  _handleClosePopup(evt) {
     const elem = evt.target;
     const padre1 = elem.parentElement;
     const padre2 = padre1.parentElement;

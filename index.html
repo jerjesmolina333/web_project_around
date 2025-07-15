@@ -54,9 +54,19 @@
         <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 10.3.1</div>
       </footer>
 
-      <!-- Modal de despliegue de imagen -->
-      <div class="imagen__display" style="display: none">
-        <div class="popup"></div>
+      <!-- Ventana modal para ver la imagen: -->
+      <div class="modal-overlay modal-overlay-hidden" id="modalOverlay">
+        <div class="modal" id="modal">
+          <div class="imagen__container">
+            <img
+              src="./images/BotonCerrar.png"
+              class="popup__cerrarIMG"
+              alt="boton para cerrar la ventana emergente"
+            />
+
+            <img src="" class="imagen__pic" alt="Imagen por desplegar" />
+          </div>
+        </div>
       </div>
 
       <!-- Modal de edición de perfil-->
@@ -178,7 +188,7 @@
     </template>
 
     <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/validate.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
     <script type="module" src="./scripts/card.js"></script>
   </body>
 </html>

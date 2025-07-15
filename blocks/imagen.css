@@ -13,7 +13,7 @@
 .imagen__pic {
   max-width: 500px;
   height: auto;
-  width: auto;
+  width: 60vw;
   z-index: 2;
 }
 @media screen AND (max-width: 700px) {
