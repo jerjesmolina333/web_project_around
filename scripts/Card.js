@@ -1,4 +1,4 @@
-import Popup from "./Popup.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 
 export class Card {
   constructor(data, cardSelector) {
@@ -42,8 +42,8 @@ export class Card {
     return this._element;
   }
   _handleOpenPopup(evt) {
-    const popup = new Popup({
-      popupSelector: "#modalOverlay",
+    const popup = new PopupWithImage({
+      cardSelector: "#modalOverlay",
       imageLnk: this._imageLink,
     });
 
