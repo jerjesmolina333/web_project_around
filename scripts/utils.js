@@ -15,7 +15,7 @@ function attendSubmitProfile(evt) {
   document.body.classList.remove("modal-open");
 }
 
-export function procesaClickEditarPerfil(contEP, evt) {
+export function procesaClickEditarPerfil(evt) {
   const formaEP = new PopupFormEP({
     fondoSelector: "#modal-formEP",
     containerSelector: ".popup__container",

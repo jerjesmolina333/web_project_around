@@ -1,4 +1,5 @@
 import { PopupWithForm } from "./PopupWithForm.js";
+import { UserInfo } from "./UserInfo.js";
 
 export class PopupFormEP extends PopupWithForm {
   constructor(params) {
@@ -15,21 +16,23 @@ export class PopupFormEP extends PopupWithForm {
 
     this._form = document.querySelector(this._formSelector);
 
-    this._getInputValues();
-    this._textoNombre.value = nombre.textContent;
-    this._textoAcerca.value = profesion.textContent;
+    this._inputNombre = this._form.querySelector("#nombre");
+    this._inputAcerca = this._form.querySelector("#acerca");
+
+    this._inputNombre.value = nombre.textContent;
+    this._inputAcerca.value = profesion.textContent;
 
     this._primerCampoTexto = this._form.querySelector("#nombre");
     this._setEventListeners();
-    textoNombre.focus();
+    this._primerCampoTexto.focus();
   }
   _getInputValues() {
-    this._textoNombre = this._form.querySelector("#nombre");
-    this._textoAcerca = this._form.querySelector("#acerca");
+    this._nuevoNombre = this._inputNombre.value;
+    this._nuevoAbout = this._inputAcerca.value;
   }
   _resetForm() {
-    this._textoNombre = "";
-    this.textoAcerca = "";
+    this._inputNombre.textContent = "";
+    this.textoAcerca.textContent = "";
   }
   _setEventListeners() {
     super._setEventListeners();
@@ -40,12 +43,20 @@ export class PopupFormEP extends PopupWithForm {
       const nombrePerfil = document.querySelector(".profile__name");
       const profesionPerfil = document.querySelector(".profile__profession");
 
+      this._getInputValues();
+
+      const params = {
+        userName: this._inputNombre.value,
+        userAbout: this._inputAcerca.value,
+      };
+
+      const userInfo = new UserInfo(params);
+      userInfo.setUserInfo();
+
       nombrePerfil.textContent = nombre.value;
       profesionPerfil.textContent = profesion.value;
 
       this._fondo.style.display = "none";
-
-      //   document.body.classList.remove("modal-open");
     });
     this._botonCerrar.addEventListener("click", () => {
       this._resetForm();

@@ -129,7 +129,7 @@ body.modal-open {
 
 .popup__container {
   position: absolute;
-  top: 5%;
+  top: 15%;
   width: 400px;
   height: 400px;
   background-color: white;
@@ -158,6 +158,13 @@ body.modal-open {
   top: -35px;
 }
 .popup__cerrarNP {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  left: 180px;
+  top: -35px;
+}
+.popup__cerrarEP {
   position: relative;
   width: 25px;
   height: 25px;

@@ -1,3 +1,3 @@
 # Tripleten web_project_around
 
-Se completó la validación de campos de captura. Se ajustó el tamaño de las ventanas de captura en tamaños pequeños.
+Se llevo a cabo la división del código en bloques que contienen clases y estas clases están debilmente acopladas.

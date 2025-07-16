@@ -15,15 +15,18 @@ export class Card {
 
     return cardElement;
   }
+  _handleCardClick(evt) {
+    if (!this._elementTrashed) {
+      this._handleOpenPopup(evt);
+    } else {
+      this._elementTrashed = false;
+    }
+  }
   _setEventListeners() {
     this._element
       .querySelector(".element__pic")
       .addEventListener("click", (evt) => {
-        if (!this._elementTrashed) {
-          this._handleOpenPopup(evt);
-        } else {
-          this._elementTrashed = false;
-        }
+        this._handleCardClick(evt);
       });
 
     this._element
@@ -48,24 +51,6 @@ export class Card {
     });
 
     popup.open(evt);
-    // const posYClick = "" + (evt.clientY + 200) + "px";
-    // const modalDisplay = document.querySelector(".imagen__display");
-    // modalDisplay.style.display = "flex";
-    // document.body.classList.add("modal-open");
-
-    // const imagenTemplate = document.querySelector("#imagen").content;
-    // const imagenContainer = imagenTemplate
-    //   .querySelector(".imagen__container")
-    //   .cloneNode(true);
-
-    // imagenContainer.querySelector(".imagen__pic").src = this._imageLink;
-    // imagenContainer.style.top = posYClick;
-    // imagenContainer.style.left = "100px";
-    // modalDisplay.append(imagenContainer);
-
-    // imagenContainer.addEventListener("click", (evt) => {
-    //   this._handleClosePopup(evt);
-    // });
   }
   _handleClosePopup(evt) {
     const elem = evt.target;

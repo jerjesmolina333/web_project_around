@@ -1,7 +1,8 @@
 export class FormValidator {
   constructor(paramsValidation, elemento) {
     this._formSelector = paramsValidation.formSelector;
-    this._elemento = elemento;
+    // this._elemento = elemento;
+    this._elemento = paramsValidation.inputSelector;
     this._submitButton = paramsValidation.submitButtonSelector;
     this._inactiveButtonClass = paramsValidation.inactiveButtonClass;
     this._inputErrorClass = paramsValidation.inputErrorClass;
@@ -32,6 +33,9 @@ export class FormValidator {
   }
 
   _showInputError(formElement, inputElement, errorMessage) {
+    console.log("errorMessage: " + errorMessage);
+    console.log("inputElement.id: " + inputElement.id);
+    console.log("this._inputErrorClass: " + this._inputErrorClass);
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     // errorElement.classList.add("form__input_type_error");
     errorElement.classList.add(this._inputErrorClass);
@@ -58,7 +62,6 @@ export class FormValidator {
 
   _setEventListeners(formElement, inputList, buttonElement, inputElement) {
     inputElement.addEventListener("input", () => {
-      // debugger;
       this._checkInputValidity(formElement, inputElement);
       this._toggleButtonState(inputList, buttonElement, inputElement);
     });
@@ -72,7 +75,6 @@ export class FormValidator {
     forms.forEach((formElement) => {
       const fieldSet = formElement.querySelector(".form__set");
       const buttonElement = fieldSet.querySelector(this._submitButton);
-      // debugger;
       const listaCampos = Array.from(fieldSet.querySelectorAll(this._elemento));
       listaCampos.forEach((inputField) => {
         this._setEventListeners(
