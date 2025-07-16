@@ -1,73 +1,39 @@
-export function procesaClickNuevoLugar(formaNewPlace) {
-  formaNewPlace.style.display = "flex";
-  document.body.classList.add("modal-open");
+import { PopupFormEP } from "./PopupFormEP.js";
+import { PopupFormNP } from "./PopupFormNP.js";
 
-  // Popup para añadir Nuevo Lugar:
-  const contNP = document.querySelector("#container-NP");
-  const primerCampoTexto = formaNewPlace.querySelector("#np__title");
-  primerCampoTexto.focus();
-  contNP.addEventListener(
-    "keydown",
-    (event) => {
-      var keyValue = event.key;
+function attendSubmitProfile(evt) {
+  evt.preventDefault();
+  const nombre = contEP.querySelector("#nombre");
+  const profesion = formaEdicion.querySelector("#acerca");
+  const nombrePerfil = document.querySelector(".profile__name");
+  const profesionPerfil = document.querySelector(".profile__profession");
 
-      if (keyValue == "Escape") {
-        formaNewPlace.style.display = "none";
-        document.body.classList.remove("modal-open");
-      }
-    },
-    false
-  );
-  const fondoNegro = document.querySelector(".page");
-  fondoNegro.addEventListener("click", (evt) => {
-    const elemento = evt.target.classList[0];
-    // console.log(elemento);
-    if (elemento === "popup") {
-      formaNewPlace.style.display = "none";
-      document.body.classList.remove("modal-open");
-    }
-  });
+  nombrePerfil.textContent = nombre.value;
+  profesionPerfil.textContent = profesion.value;
+
+  contEP.style.display = "none";
+  document.body.classList.remove("modal-open");
 }
 
-export function procesaClickEditarPerfil(contEP) {
-  const nombre = document.querySelector(".profile__name");
-  const profesion = document.querySelector(".profile__profession");
-  const textoNombre = document.querySelector("#nombre");
-  const textoAcerca = document.querySelector("#acerca");
-
-  textoNombre.value = nombre.textContent;
-  textoAcerca.value = profesion.textContent;
-
-  contEP.style.display = "flex";
-  document.body.classList.add("modal-open");
-
-  const primerCampoTexto = contEP.querySelector("#nombre");
-  primerCampoTexto.focus();
-  contEP.addEventListener(
-    "keydown",
-    (event) => {
-      var keyValue = event.key;
-
-      if (keyValue == "Escape") {
-        contEP.style.display = "none";
-        document.body.classList.remove("modal-open");
-
-        if (imagenEditar) {
-          imagenEditar.addEventListener("click", procesaClickEditarPerfil);
-        }
-      }
-    },
-    false
-  );
-  const fondoNegro = document.querySelector(".page");
-  fondoNegro.addEventListener("click", (evt) => {
-    const elemento = evt.target.classList[0];
-    // console.log(elemento);
-    if (elemento === "popup") {
-      contEP.style.display = "none";
-      document.body.classList.remove("modal-open");
-    }
+export function procesaClickEditarPerfil(contEP, evt) {
+  const formaEP = new PopupFormEP({
+    fondoSelector: "#modal-formEP",
+    containerSelector: ".popup__container",
+    formSelector: ".popup__formEP",
+    primerCampoTexto: "#nombre",
   });
+
+  formaEP.open(evt);
+}
+
+export function procesaClickNuevoLugar(evt) {
+  const formaEP = new PopupFormNP({
+    fondoSelector: "#modal-formNP",
+    containerSelector: ".popup__container",
+    formSelector: ".popup__formNP",
+    primerCampoTexto: "#np-title",
+  });
+  formaEP.open(evt);
 }
 
 export function procesaMouseenterEditar(imagenEditar) {

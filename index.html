@@ -55,105 +55,96 @@
       </footer>
 
       <!-- Ventana modal para ver la imagen: -->
-      <div class="modal-overlay modal-overlay-hidden" id="modalOverlay">
-        <div class="modal" id="modal">
-          <div class="imagen__container">
-            <img
-              src="./images/BotonCerrar.png"
-              class="popup__cerrarIMG"
-              alt="boton para cerrar la ventana emergente"
-            />
+      <div class="modal-overlay" id="modalOverlay" style="display: none">
+        <!-- <div class="modal" id="modal"> -->
+        <div class="imagen__container" id="imagen__container">
+          <img
+            src="./images/BotonCerrar.png"
+            class="popup__cerrarIMG"
+            alt="boton para cerrar la ventana emergente"
+          />
 
-            <img src="" class="imagen__pic" alt="Imagen por desplegar" />
-          </div>
+          <img src="" class="imagen__pic" alt="Imagen por desplegar" />
         </div>
+        <!-- </div> -->
       </div>
 
       <!-- Modal de edición de perfil-->
-      <div class="popup-edit-profile" style="display: none">
-        <div class="popup">
-          <div class="popup__container" id="container-EP">
-            <img
-              src="./images/BotonCerrar.png"
-              class="popup__cerrarEP"
-              alt="boton para cerrar la ventana emergente"
-            />
+      <div class="modal-form" id="modal-formEP" style="display: none">
+        <div class="popup__container" id="container-EP">
+          <img
+            src="./images/BotonCerrar.png"
+            class="popup__cerrarEP"
+            alt="boton para cerrar la ventana emergente"
+          />
 
-            <form class="popup__form" id="editar-perfil" method="post">
-              <h2 class="popup__heading">Editar perfil</h2>
-              <fieldset class="form__set">
-                <input
-                  type="text"
-                  class="popup__input"
-                  id="nombre"
-                  placeholder="Nombre"
-                  minlength="2"
-                  maxlength="40"
-                  required
-                />
-                <span class="popup__input_type_error nombre-error"></span>
-                <input
-                  type="text"
-                  class="popup__input"
-                  id="acerca"
-                  placeholder="Acerca de mí"
-                  minlength="2"
-                  maxlength="200"
-                  required
-                />
-                <span class="popup__input_type_error acerca-error"></span>
-                <button
-                  type="submit"
-                  class="popup__button form__submit_inactive"
-                >
-                  Guardar
-                </button>
-              </fieldset>
-            </form>
-          </div>
+          <form class="popup__formEP" id="editar-perfil" method="post">
+            <h2 class="popup__heading">Editar perfil</h2>
+            <fieldset class="form__set">
+              <input
+                type="text"
+                class="popup__input"
+                id="nombre"
+                placeholder="Nombre"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__input_type_error nombre-error"></span>
+              <input
+                type="text"
+                class="popup__input"
+                id="acerca"
+                placeholder="Acerca de mí"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__input_type_error acerca-error"></span>
+              <button type="submit" class="popup__button form__submit_inactive">
+                Guardar
+              </button>
+            </fieldset>
+          </form>
         </div>
       </div>
 
       <!-- Ventana modal para el nuevo lugar  -->
-      <div class="popup-new-place" style="display: none">
-        <div class="popup">
-          <div class="popup__container" id="container-NP">
-            <img
-              src="./images/BotonCerrar.png"
-              class="popup__cerrarNP"
-              alt="boton para cerrar la ventana emergente"
-            />
+      <div class="modal-form" id="modal-formNP" style="display: none">
+        <!-- <div class="popup-new-place" > -->
+        <div class="popup__container" id="container-NP">
+          <img
+            src="./images/BotonCerrar.png"
+            class="popup__cerrarNP"
+            alt="boton para cerrar la ventana emergente"
+          />
 
-            <form class="popup__form" id="nuevo-lugar" method="post">
-              <h2 class="popup__heading">Nuevo Lugar</h2>
-              <fieldset class="form__set">
-                <input
-                  type="text"
-                  class="popup__input"
-                  id="np__title"
-                  placeholder="Título"
-                  minlength="2"
-                  maxlength="30"
-                  required
-                />
-                <span class="popup__input_type_error np__title-error"></span>
-                <input
-                  type="url"
-                  class="popup__input"
-                  id="np-image"
-                  placeholder="Enlace a la imagen"
-                  required
-                />
-                <span class="popup__input_type_error np-image-error"></span>
-                <button
-                  type="submit"
-                  class="popup__button form__submit_inactive"
-                >
-                  Crear
-                </button>
-              </fieldset>
-            </form>
-          </div>
+          <form class="popup__formNP" id="nuevo-lugar" method="post">
+            <h2 class="popup__heading">Nuevo Lugar</h2>
+            <fieldset class="form__set">
+              <input
+                type="text"
+                class="popup__input"
+                id="np-title"
+                placeholder="Título"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="popup__input_type_error np__title-error"></span>
+              <input
+                type="url"
+                class="popup__input"
+                id="np-image"
+                placeholder="Enlace a la imagen"
+                required
+              />
+              <span class="popup__input_type_error np-image-error"></span>
+              <button type="submit" class="popup__button form__submit_inactive">
+                Crear
+              </button>
+            </fieldset>
+          </form>
         </div>
       </div>
     </div>

@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let formaDesplegada = "none";
 
   const contEP = document.querySelector(".popup-edit-profile");
-  const formaNewPlace = document.querySelector(".popup-new-place");
-  const formaEdicion = document.querySelector(".popup-edit-profile");
+  // const formaNewPlace = document.querySelector(".popup-new-place");
+  const formaEdicion = document.querySelector(".modal-form");
 
   const imagenCerrarEP = document.querySelector(".popup__cerrarEP");
   const imagenCerrarNP = document.querySelector(".popup__cerrarNP");
@@ -43,64 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
     errorClass: "popup__error_visible",
   };
 
-  function despliegaPopupImagen() {
-    console.log("==");
-  }
-
-  function createCard(card) {
-    const elementTemplate = document.querySelector("#element").content;
-    const cardElement = elementTemplate
-      .querySelector(".element__container")
-      .cloneNode(true);
-
-    const imagen = cardElement.querySelector(".element__pic");
-    cardElement.querySelector(".element__name").textContent = card.name;
-    cardElement.querySelector(".element__pic").src = card.link;
-    cardElement.querySelector(".element__pic").alt = card.name;
-
-    agregaPropsImg(evt, imagen, imagenDesplegada);
-    imagenDesplegada = false;
-
-    cardElement
-      .querySelector(".element__trash")
-      .addEventListener("click", function () {
-        const padre1 = this.parentElement;
-        const padre2 = padre1.parentElement;
-
-        padre1.remove();
-      });
-
-    return cardElement;
-  }
-
-  function attendSubmitProfile(evt) {
-    evt.preventDefault();
-    const nombre = contEP.querySelector("#nombre");
-    const profesion = formaEdicion.querySelector("#acerca");
-    const nombrePerfil = document.querySelector(".profile__name");
-    const profesionPerfil = document.querySelector(".profile__profession");
-
-    nombrePerfil.textContent = nombre.value;
-    profesionPerfil.textContent = profesion.value;
-
-    contEP.style.display = "none";
-    document.body.classList.remove("modal-open");
-  }
-
-  function procesaSubmitNewPlace(evt) {
-    evt.preventDefault();
-    const cardsContainer = document.querySelector(".elements");
-
-    let nombre = formaNewPlace.querySelector("#np__title").value;
-    let thisLink = formaNewPlace.querySelector("#np-image").value;
-    let thisCard = { name: nombre, link: thisLink };
-    let cardElement = createCard(thisCard);
-
-    cardsContainer.prepend(cardElement);
-    formaNewPlace.style.display = "none";
-    document.body.classList.remove("modal-open");
-  }
-
   const cargaInicialImag = new Section(
     {
       data: initialCards,
@@ -115,59 +57,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
   ////////////////////////////////
   //// CÓDIGO:
-
   cargaInicialImag.renderItems();
 
   const validator1 = new FormValidator(paramsValidation, ".popup__input");
   validator1.enableValidation();
 
-  if (imagenEditar && botonPlus && imagenCerrarEP && imagenCerrarNP) {
-    imagenEditar.addEventListener("click", function () {
-      procesaClickEditarPerfil(contEP);
-    });
+  // if (imagenEditar && botonPlus && imagenCerrarEP && imagenCerrarNP) {
+  imagenEditar.addEventListener("click", function () {
+    procesaClickEditarPerfil(contEP);
+  });
 
-    imagenEditar.addEventListener("mouseenter", function () {
-      // debugger;
-      procesaMouseenterEditar(imagenEditar);
-    });
+  imagenEditar.addEventListener("mouseenter", function () {
+    procesaMouseenterEditar(imagenEditar);
+  });
 
-    imagenEditar.addEventListener("mouseleave", function () {
-      imagenEditar.src = "./images/EditButton.png";
-    });
-    botonPlus.addEventListener("click", function () {
-      procesaClickNuevoLugar(formaNewPlace);
-    });
-    // botonPlus.addEventListener("click", procesaClickNuevoLugar(formaNewPlace));
+  imagenEditar.addEventListener("mouseleave", function () {
+    imagenEditar.src = "./images/EditButton.png";
+  });
 
-    botonPlus.addEventListener("mouseenter", function () {
-      procesaMouseEnterBotPlus(botonPlus, imagenBotonPlus);
-    });
-    botonPlus.addEventListener("mouseleave", function () {
-      procesaMouseleaveBotPlus(botonPlus, imagenBotonPlus);
-    });
+  botonPlus.addEventListener("click", function () {
+    procesaClickNuevoLugar();
+  });
+  // botonPlus.addEventListener("click", procesaClickNuevoLugar(formaNewPlace));
 
-    imagenCerrarNP.addEventListener("mouseenter", function () {
-      imagenCerrarNP.src = "./images/BotonCerrar2.png";
-    });
-    imagenCerrarNP.addEventListener("mouseleave", function () {
-      imagenCerrarNP.src = "./images/BotonCerrar.png";
-    });
-    imagenCerrarNP.addEventListener("click", function () {
-      formaNewPlace.style.display = "none";
-      document.body.classList.remove("modal-open");
-    });
-    imagenCerrarEP.addEventListener("mouseenter", function () {
-      imagenCerrarEP.src = "./images/BotonCerrar2.png";
-    });
-    imagenCerrarEP.addEventListener("mouseleave", function () {
-      imagenCerrarEP.src = "./images/BotonCerrar.png";
-    });
+  botonPlus.addEventListener("mouseenter", function () {
+    procesaMouseEnterBotPlus(botonPlus, imagenBotonPlus);
+  });
+  botonPlus.addEventListener("mouseleave", function () {
+    procesaMouseleaveBotPlus(botonPlus, imagenBotonPlus);
+  });
 
-    imagenCerrarEP.addEventListener("click", function () {
-      contEP.style.display = "none";
-      document.body.classList.remove("modal-open");
-    });
-  }
+  imagenCerrarNP.addEventListener("mouseenter", function () {
+    imagenCerrarNP.src = "./images/BotonCerrar2.png";
+  });
+  imagenCerrarNP.addEventListener("mouseleave", function () {
+    imagenCerrarNP.src = "./images/BotonCerrar.png";
+  });
+  imagenCerrarNP.addEventListener("click", function () {
+    formaNewPlace.style.display = "none";
+    document.body.classList.remove("modal-open");
+  });
+  imagenCerrarEP.addEventListener("mouseenter", function () {
+    imagenCerrarEP.src = "./images/BotonCerrar2.png";
+  });
+  imagenCerrarEP.addEventListener("mouseleave", function () {
+    imagenCerrarEP.src = "./images/BotonCerrar.png";
+  });
 
   document.querySelectorAll(".element__like").forEach(function (img) {
     let liked = false;
@@ -194,6 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //Agregar el evento Submit a las ventanas emergentes:
-  formaEdicion.addEventListener("submit", attendSubmitProfile);
-  formaNewPlace.addEventListener("submit", procesaSubmitNewPlace);
+  // formaEdicion.addEventListener("submit", attendSubmitProfile);
+  // formaNewPlace.addEventListener("submit", procesaSubmitNewPlace);
 });
