@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Este es el proyecto 10 de TripleTen" />
-    <meta name="keywords" content="TripleTen Proyecto10 JavaScript" />
+    <meta name="description" content="Este es el proyecto 11 de TripleTen" />
+    <meta name="keywords" content="TripleTen Proyecto11 JavaScript" />
     <meta name="author" content="Jerjes Molina" />
     <link rel="stylesheet" href="./pages/index.css" />
 
@@ -51,7 +51,7 @@
       <div class="elements"></div>
 
       <footer class="footer">
-        <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 11.1</div>
+        <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 11.2.1</div>
       </footer>
 
       <!-- Ventana modal para ver la imagen: -->
@@ -69,49 +69,11 @@
         <!-- </div> -->
       </div>
 
-      <!-- Modal de edición de perfil-->
-      <div class="modal-form" id="modal-formEP" style="display: none">
-        <div class="popup__container" id="container-EP">
-          <img
-            src="./images/BotonCerrar.png"
-            class="popup__cerrarEP"
-            alt="boton para cerrar la ventana emergente"
-          />
-
-          <form class="popup__formEP" id="editar-perfil" method="post">
-            <h2 class="popup__heading">Editar perfil</h2>
-            <fieldset class="form__set">
-              <input
-                type="text"
-                class="popup__input"
-                id="nombre"
-                placeholder="Nombre"
-                minlength="2"
-                maxlength="40"
-                required
-              />
-              <span class="popup__input_type_error nombre-error"></span>
-              <input
-                type="text"
-                class="popup__input"
-                id="acerca"
-                placeholder="Acerca de mí"
-                minlength="2"
-                maxlength="200"
-                required
-              />
-              <span class="popup__input_type_error acerca-error"></span>
-              <button type="submit" class="popup__button form__submit_inactive">
-                Guardar
-              </button>
-            </fieldset>
-          </form>
-        </div>
-      </div>
+      <!-- Modal genérico para formularios-->
+      <div class="modal-form" id="modal-form" style="display: none"></div>
 
       <!-- Ventana modal para el nuevo lugar  -->
-      <div class="modal-form" id="modal-formNP" style="display: none">
-        <!-- <div class="popup-new-place" > -->
+      <!-- <div class="modal-form" id="modal-formNP" style="display: none">
         <div class="popup__container" id="container-NP">
           <img
             src="./images/BotonCerrar.png"
@@ -146,7 +108,7 @@
             </fieldset>
           </form>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- TEMPLATE Para visualizar imagen: -->
@@ -159,6 +121,84 @@
         />
 
         <img src="" class="imagen__pic" alt="Imagen por desplegar" />
+      </div>
+    </template>
+
+    <!-- TEMPLATE para edición de perfil:-->
+    <template id="formEP">
+      <div class="popup__container" id="container-EP">
+        <img
+          src="./images/BotonCerrar.png"
+          class="popup__cerrar"
+          alt="boton para cerrar la ventana emergente"
+        />
+
+        <form class="popup__formEP" id="editar-perfil" method="post">
+          <h2 class="popup__heading">Editar perfil</h2>
+          <fieldset class="form__set">
+            <input
+              type="text"
+              class="popup__input"
+              id="nombre"
+              placeholder="Nombre"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__input_type_error nombre-error"></span>
+            <input
+              type="text"
+              class="popup__input"
+              id="acerca"
+              placeholder="Acerca de mí"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__input_type_error acerca-error"></span>
+            <button type="submit" class="popup__button form__submit_inactive">
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </template>
+
+    <!-- TEMPLATE para formulario de nuevo lugar-->
+    <template id="formNP">
+      <div class="popup__container" id="container-NP">
+        <img
+          src="./images/BotonCerrar.png"
+          class="popup__cerrar"
+          alt="boton para cerrar la ventana emergente"
+        />
+
+        <form class="popup__formNP" id="nuevo-lugar" method="post">
+          <h2 class="popup__heading">Nuevo Lugar</h2>
+          <fieldset class="form__set">
+            <input
+              type="text"
+              class="popup__input"
+              id="np-title"
+              placeholder="Título"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__input_type_error np-title-error"></span>
+            <input
+              type="url"
+              class="popup__input"
+              id="np-image"
+              placeholder="Enlace a la imagen"
+              required
+            />
+            <span class="popup__input_type_error np-image-error"></span>
+            <button type="submit" class="popup__button form__submit_inactive">
+              Crear
+            </button>
+          </fieldset>
+        </form>
       </div>
     </template>
 
@@ -179,7 +219,5 @@
     </template>
 
     <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/card.js"></script>
   </body>
 </html>

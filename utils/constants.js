@@ -1,27 +1,27 @@
 export const initialCards = [
   {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+    name: "Acapulco",
+    link: "https://cdn77.orangesmile.com/common/img_cities_original/acapulco-de-juarez--1649039-33.jpg",
   },
   {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+    name: "San Cristóbal de las Casas",
+    link: "https://www.gob.mx/cms/uploads/article/main_image/82906/Chiapas-San-Cristobal-web.jpg",
   },
   {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+    name: "Puebla",
+    link: "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/228000/228612-Puebla-Cathedral.jpg",
   },
   {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+    name: "Guanajuato",
+    link: "https://www.eluniversaldf.mx/wp-content/uploads/2023/10/cual-es-la-capital-de-guanajuato.webp",
   },
   {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+    name: "Peña de Bernal",
+    link: "https://escapadas.mexicodesconocido.com.mx/wp-content/uploads/2020/10/Depositphotos_236469370_XL-scaled.jpg",
   },
   {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+    name: "Cabo San Lucas",
+    link: "https://cruisefever.net/wp-content/uploads/2023/01/cabo-lands-end-and-beaches.jpg",
   },
 ];
 export const cardListSelector = ".elements";

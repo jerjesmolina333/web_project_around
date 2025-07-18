@@ -1,5 +1,6 @@
-import { PopupFormEP } from "./PopupFormEP.js";
-import { PopupFormNP } from "./PopupFormNP.js";
+import { PopupWithForm } from "./PopupWithForm.js";
+import { paramsValidationEP, paramsValidationNP } from "../utils/constants.js";
+import { FormValidator } from "./FormValidator.js";
 
 function attendSubmitProfile(evt) {
   evt.preventDefault();
@@ -15,26 +16,121 @@ function attendSubmitProfile(evt) {
   document.body.classList.remove("modal-open");
 }
 
-export function procesaClickEditarPerfil(evt) {
-  const formaEP = new PopupFormEP({
-    fondoSelector: "#modal-formEP",
-    containerSelector: ".popup__container",
-    formSelector: ".popup__formEP",
-    primerCampoTexto: "#nombre",
-  });
+export function procesaClickEditarPerfil2(evt) {
+  const marcadoFormEP = `
+   <img
+          src="./images/BotonCerrar.png"
+          class="popup__cerrarEP"
+          alt="boton para cerrar la ventana emergente"
+        />
 
-  formaEP.open(evt);
+        <form class="popup__formEP" id="editar-perfil" method="post">
+          <h2 class="popup__heading">Editar perfil</h2>
+          <fieldset class="form__set">
+            <input
+              type="text"
+              class="popup__input"
+              id="nombre"
+              placeholder="Nombre"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__input_type_error nombre-error"></span>
+            <input
+              type="text"
+              class="popup__input"
+              id="acerca"
+              placeholder="Acerca de mí"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__input_type_error acerca-error"></span>
+            <button type="submit" class="popup__button form__submit_inactive">
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+`;
+  const formaEP2 = new PopupWithForm(
+    {
+      popupSelector: "#modal-form",
+      fondoSelector: "#modal-form",
+      templateSelector: "#formEP",
+      containerSelector: "#container-EP",
+      formSelector: ".popup__formEP",
+      primerCampoTexto: "#nombre",
+    },
+    marcadoFormEP
+  );
+  formaEP2.open(evt);
+  formaEP2.setTextEP();
+  const validatorEP = new FormValidator(paramsValidationEP, ".popup__input");
+  validatorEP.enableValidation();
 }
 
-export function procesaClickNuevoLugar(evt) {
-  const formaEP = new PopupFormNP({
-    fondoSelector: "#modal-formNP",
-    containerSelector: ".popup__container",
-    formSelector: ".popup__formNP",
-    primerCampoTexto: "#np-title",
-  });
-  formaEP.open(evt);
+export function procesaClickNewPlace(evt) {
+  const marcadoFormNP = `
+   <img
+          src="./images/BotonCerrar.png"
+          class="popup__cerrar"
+          alt="boton para cerrar la ventana emergente"
+        />
+
+        <form class="popup__formNP" id="nuevo-lugar" method="post">
+          <h2 class="popup__heading">Nuevo Lugar</h2>
+          <fieldset class="form__set">
+            <input
+              type="text"
+              class="popup__input"
+              id="np-title"
+              placeholder="Título"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__input_type_error np-title-error"></span>
+            <input
+              type="url"
+              class="popup__input"
+              id="np-image"
+              placeholder="Enlace a la imagen"
+              required
+            />
+            <span class="popup__input_type_error np-image-error"></span>
+            <button type="submit" class="popup__button form__submit_inactive">
+              Crear
+            </button>
+          </fieldset>
+        </form>
+`;
+
+  const formaNP = new PopupWithForm(
+    {
+      popupSelector: "#modal-form",
+      fondoSelector: "#modal-form",
+      templateSelector: "#formNP",
+      containerSelector: "#container-NP",
+      formSelector: ".popup__formNP",
+      primerCampoTexto: "#np-title",
+    },
+    marcadoFormNP
+  );
+  formaNP.open(evt);
+  const validatorNP = new FormValidator(paramsValidationNP, ".popup__input");
+  validatorNP.enableValidation();
 }
+
+// export function procesaClickNuevoLugar(evt) {
+//   const formaEP = new PopupFormNP({
+//     fondoSelector: "#modal-formNP",
+//     containerSelector: ".popup__container",
+//     formSelector: ".popup__formNP",
+//     primerCampoTexto: "#np-title",
+//   });
+//   formaEP.open(evt);
+// }
 
 export function procesaMouseenterEditar(imagenEditar) {
   const boton = document.querySelector(".profile__boton-edit");
