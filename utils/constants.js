@@ -24,6 +24,7 @@ export const initialCards = [
     link: "https://cruisefever.net/wp-content/uploads/2023/01/cabo-lands-end-and-beaches.jpg",
   },
 ];
+
 export const cardListSelector = ".elements";
 
 export const paramsValidationEP = {

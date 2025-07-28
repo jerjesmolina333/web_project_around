@@ -87,9 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         // .then((res) => res.json())
         .then((res) =>
-          res.ok
-            ? console.log("EXITO")
-            : console.log("Hubo éxito en la llamada")
+          res.ok ? console.log("EXITO") : console.log("res. NO OK")
         )
         .catch((err) => console.log("hubo un error: " + err))
     );
@@ -104,16 +102,20 @@ document.addEventListener("DOMContentLoaded", function () {
       authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
     },
   });
-  api._despUsuario();
+  // api._despUsuario();
+  api._despInicial();
 
-  const apiImag = new Api({
-    link: "https://around-api.es.tripleten-services.com/v1/cards/",
-    headers: {
-      authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
-    },
-  });
+  // const apiImag = new Api({
+  //   link: "https://around-api.es.tripleten-services.com/v1/cards/",
+  //   headers: {
+  //     authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+  //   },
+  // });
   // debugger;
-  apiImag._despImagenesInic();
+  // apiImag._despImagenesInic();
+  // debugger;
+
+  // apiImag._despInicial();
 
   // cargaInicialImag.renderItems();
 
