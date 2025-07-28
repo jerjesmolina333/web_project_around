@@ -13,11 +13,15 @@ export class Api {
     this._headers = headers;
   }
   _despUsuario() {
+    // debugger;
+    // console.log("this._link: " + this._link);
+    // console.log("this._headers: " + this._headers.authorization);
     fetch(this._link, {
       headers: {
-        authorization: "bbbc5cf5-5717-4950-8052-46e64bd08b28",
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
       },
     })
+      // fetch(this._link, this._headers)
       .then(function (res) {
         return res.json();
       })
@@ -26,9 +30,33 @@ export class Api {
         const profesionPerfil = document.querySelector(".profile__profession");
         const photo = document.querySelector(".profile__photo");
         photo.src = data.avatar;
-
         nombrePerfil.textContent = data.name;
+
         profesionPerfil.textContent = data.about;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  _actualizaUsuario(nombre, about) {
+    fetch(this._link, {
+      method: "PATCH",
+      headers: {
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: nombre,
+        about: about,
+      }),
+    })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        // console.log("=== DATA: " + data);
+        // console.log("name: " + data.name);
+        // console.log("About: " + data.about);
       })
       .catch(function (error) {
         console.log(error);
@@ -37,7 +65,7 @@ export class Api {
   _despImagenesInic() {
     fetch(this._link, {
       headers: {
-        authorization: "bbbc5cf5-5717-4950-8052-46e64bd08b28",
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
       },
     })
       .then(function (res) {
@@ -51,6 +79,7 @@ export class Api {
             isLiked: card.IsLiked,
             name: card.name,
             link: card.link,
+            id: card.id,
           };
           initialImages.unshift(estaCard);
         });

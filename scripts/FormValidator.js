@@ -33,9 +33,9 @@ export class FormValidator {
   }
 
   _showInputError(formElement, inputElement, errorMessage) {
-    console.log("errorMessage: " + errorMessage);
-    console.log("inputElement.id: " + inputElement.id);
-    console.log("this._inputErrorClass: " + this._inputErrorClass);
+    // console.log("errorMessage: " + errorMessage);
+    // console.log("inputElement.id: " + inputElement.id);
+    // console.log("this._inputErrorClass: " + this._inputErrorClass);
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     // errorElement.classList.add("form__input_type_error");
     errorElement.classList.add(this._inputErrorClass);

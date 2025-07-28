@@ -1,4 +1,6 @@
 import Popup from "./Popup.js";
+// import { Api } from "./Api.js";
+import { Api } from "./Api.js";
 import { UserInfo } from "./UserInfo.js";
 import { Card } from "./Card.js";
 
@@ -12,11 +14,6 @@ export class PopupWithForm extends Popup {
     this._formSelector = params.formSelector;
 
     this._primerCampoTextoSelector = params.primerCampoTexto;
-
-    console.log("this._fondoSelector: " + this._fondoSelector);
-    console.log("this._containerSelector: " + this._containerSelector);
-    console.log("this._templateSelector: " + this._templateSelector);
-    console.log("this._formSelector: " + this._formSelector);
     this._marcado = marcado;
   }
 
@@ -74,6 +71,21 @@ export class PopupWithForm extends Popup {
 
     nombrePerfil.textContent = nombre.value;
     profesionPerfil.textContent = profesion.value;
+    this._nombre = nombre.value;
+    this._about = profesion.value;
+
+    const apiEP = new Api({
+      link: "https://around-api.es.tripleten-services.com/v1/users/me",
+      method: "PATCH",
+      headers: {
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+      },
+      body: JSON.stringify({
+        name: this._nombre,
+        about: this._about,
+      }),
+    });
+    apiEP._actualizaUsuario(this._nombre, this._about);
 
     this._fondo.style.display = "none";
   }

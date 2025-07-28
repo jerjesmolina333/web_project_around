@@ -25,18 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let imagenDesplegada = false;
 
-  // const cargaInicialImag = new Section(
-  //   {
-  //     data: initialCards,
-  //     renderer: (item) => {
-  //       const elemento = new Card(item, "#element");
-  //       const cardElement = elemento.generateCard();
-  //       cargaInicialImag.addItem(cardElement);
-  //     },
-  //   },
-  //   cardListSelector
-  // );
-
   function agregaEventosBotonEditarPerfil() {
     imagenEditar.addEventListener("click", function () {
       procesaClickEditarPerfil2();
@@ -113,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const api = new Api({
     link: "https://around-api.es.tripleten-services.com/v1/users/me",
     headers: {
-      authorization: "bbbc5cf5-5717-4950-8052-46e64bd08b28",
+      authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
     },
   });
   api._despUsuario();
@@ -121,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const apiImag = new Api({
     link: "https://around-api.es.tripleten-services.com/v1/cards/",
     headers: {
-      authorization: "bbbc5cf5-5717-4950-8052-46e64bd08b28",
+      authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
     },
   });
   // debugger;
@@ -129,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // cargaInicialImag.renderItems();
 
-  // agregaEventosBotonEditarPerfil();
+  agregaEventosBotonEditarPerfil();
   // agregaEventosBotonNuevoLugar();
   // agregaEventosBotonLike();
 });
