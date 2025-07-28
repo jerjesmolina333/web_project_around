@@ -1,4 +1,5 @@
 import { Card } from "./Card.js";
+import { Api } from "./Api.js";
 
 import {
   procesaClickNewPlace,
@@ -24,17 +25,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let imagenDesplegada = false;
 
-  const cargaInicialImag = new Section(
-    {
-      data: initialCards,
-      renderer: (item) => {
-        const elemento = new Card(item, "#element");
-        const cardElement = elemento.generateCard();
-        cargaInicialImag.addItem(cardElement);
-      },
-    },
-    cardListSelector
-  );
+  // const cargaInicialImag = new Section(
+  //   {
+  //     data: initialCards,
+  //     renderer: (item) => {
+  //       const elemento = new Card(item, "#element");
+  //       const cardElement = elemento.generateCard();
+  //       cargaInicialImag.addItem(cardElement);
+  //     },
+  //   },
+  //   cardListSelector
+  // );
 
   function agregaEventosBotonEditarPerfil() {
     imagenEditar.addEventListener("click", function () {
@@ -61,16 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
     botonPlus.addEventListener("mouseleave", function () {
       procesaMouseleaveBotPlus(botonPlus, imagenBotonPlus);
     });
-    // imagenCerrarNP.addEventListener("mouseenter", function () {
-    //   imagenCerrarNP.src = "./images/BotonCerrar2.png";
-    // });
-    // imagenCerrarNP.addEventListener("mouseleave", function () {
-    //   imagenCerrarNP.src = "./images/BotonCerrar.png";
-    // });
-    // imagenCerrarNP.addEventListener("click", function () {
-    //   formaNewPlace.style.display = "none";
-    //   document.body.classList.remove("modal-open");
-    // });
   }
 
   function agregaEventosBotonLike() {
@@ -99,15 +90,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function cargaDatosUsuario() {
+    return (
+      fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
+        headers: {
+          authorization: "1e56857e-5782-4eca-8ef7-c3510bd14463",
+        },
+      })
+        // .then((res) => res.json())
+        .then((res) =>
+          res.ok
+            ? console.log("EXITO")
+            : console.log("Hubo éxito en la llamada")
+        )
+        .catch((err) => console.log("hubo un error: " + err))
+    );
+  }
+
   ////////////////////////////////
   //// CÓDIGO:
-  cargaInicialImag.renderItems();
 
-  // const validatorNP = new FormValidator(paramsValidationNP, ".popup__input");
-  // validatorNP.enableValidation();
+  const api = new Api({
+    link: "https://around-api.es.tripleten-services.com/v1/users/me",
+    headers: {
+      authorization: "bbbc5cf5-5717-4950-8052-46e64bd08b28",
+    },
+  });
+  api._despUsuario();
 
-  // if (imagenEditar && botonPlus && imagenCerrarEP && imagenCerrarNP) {
-  agregaEventosBotonEditarPerfil();
-  agregaEventosBotonNuevoLugar();
-  agregaEventosBotonLike();
+  const apiImag = new Api({
+    link: "https://around-api.es.tripleten-services.com/v1/cards/",
+    headers: {
+      authorization: "bbbc5cf5-5717-4950-8052-46e64bd08b28",
+    },
+  });
+  // debugger;
+  apiImag._despImagenesInic();
+
+  // cargaInicialImag.renderItems();
+
+  // agregaEventosBotonEditarPerfil();
+  // agregaEventosBotonNuevoLugar();
+  // agregaEventosBotonLike();
 });
