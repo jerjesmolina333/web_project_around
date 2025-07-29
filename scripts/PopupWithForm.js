@@ -103,6 +103,19 @@ export class PopupWithForm extends Popup {
 
     cardsContainer.prepend(cardElement);
 
+    const apiNuevaImagen = new Api({
+      link: "https://around-api.es.tripleten-services.com/v1/cards/",
+      method: "PATCH",
+      headers: {
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+      },
+      body: JSON.stringify({
+        name: this._nuevoTitulo,
+        link: this._nuevoLink,
+      }),
+    });
+    apiNuevaImagen._insertaImagen(this._nuevoTitulo, this._nuevoLink);
+
     this._close();
   }
 

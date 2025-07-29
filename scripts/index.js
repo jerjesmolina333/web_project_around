@@ -120,6 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // cargaInicialImag.renderItems();
 
   agregaEventosBotonEditarPerfil();
-  // agregaEventosBotonNuevoLugar();
+  agregaEventosBotonNuevoLugar();
   // agregaEventosBotonLike();
 });

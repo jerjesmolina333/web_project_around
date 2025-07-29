@@ -122,16 +122,6 @@ export function procesaClickNewPlace(evt) {
   validatorNP.enableValidation();
 }
 
-// export function procesaClickNuevoLugar(evt) {
-//   const formaEP = new PopupFormNP({
-//     fondoSelector: "#modal-formNP",
-//     containerSelector: ".popup__container",
-//     formSelector: ".popup__formNP",
-//     primerCampoTexto: "#np-title",
-//   });
-//   formaEP.open(evt);
-// }
-
 export function procesaMouseenterEditar(imagenEditar) {
   const boton = document.querySelector(".profile__boton-edit");
   imagenEditar.src = "./images/EditButton2.png";

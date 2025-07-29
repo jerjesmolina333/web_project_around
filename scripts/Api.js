@@ -93,6 +93,31 @@ export class Api {
     profesionPerfil.textContent = data.about;
   }
 
+  _insertaImagen(name, link) {
+    fetch(this._link, {
+      method: "POST",
+      headers: {
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        // console.log("name: " + data.name);
+        // console.log("link: " + data.link);
+      })
+      .catch(function (error) {
+        console.log(error);
+        return Promise.reject(`Error: ${res.status}`);
+      });
+  }
+
   _actualizaUsuario(nombre, about) {
     fetch(this._link, {
       method: "PATCH",
