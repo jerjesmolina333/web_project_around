@@ -10,11 +10,36 @@
   height: 120px;
   border-radius: 50%;
 }
+.profile__img-edit-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+  opacity: 0.8;
+}
+.profile__container-imgs {
+  width: 240px;
+  height: 120px;
+}
 .contNombre {
   /* border: 1px blue solid; */
   display: flex;
   margin: 0 auto;
   padding: 0;
+}
+.profile__container-imgs {
+  display: flex;
+  position: relative;
+}
+.edit-avatar_no-visible {
+  /* position: relative; */
+  /* left: 100px; */
+  display: none;
+}
+.edit-avatar_visible {
+  position: relative;
+  left: -120px;
+  display: block;
 }
 
 .profile__name-container {

@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Este es el proyecto 11 de TripleTen" />
+    <meta name="description" content="Este es el proyecto 12 de TripleTen" />
     <meta name="keywords" content="TripleTen Proyecto11 JavaScript" />
     <meta name="author" content="Jerjes Molina" />
     <link rel="stylesheet" href="./pages/index.css" />
 
-    <title>Proyect Around-10</title>
+    <title>Proyect Around-12</title>
   </head>
 
   <body>
@@ -19,7 +19,13 @@
       </header>
 
       <div class="profile">
-        <img src="" class="profile__photo" alt="User photo" />
+        <div class="profile__container-imgs">
+          <img src="" class="profile__photo" alt="User photo" />
+          <img
+            src="./images/Icono_ed_avatar.png"
+            class="profile__img-edit-avatar edit-avatar_no-visible"
+          />
+        </div>
 
         <div class="profile__name-container">
           <div class="contNombre">
@@ -65,47 +71,20 @@
         <!-- </div> -->
       </div>
 
-      <!-- Modal genérico para formularios-->
+      <!-- Fondo genérico para formularios-->
       <div class="modal-form" id="modal-form" style="display: none"></div>
-
-      <!-- Ventana modal para el nuevo lugar  -->
-      <!-- <div class="modal-form" id="modal-formNP" style="display: none">
-        <div class="popup__container" id="container-NP">
-          <img
-            src="./images/BotonCerrar.png"
-            class="popup__cerrarNP"
-            alt="boton para cerrar la ventana emergente"
-          />
-
-          <form class="popup__formNP" id="nuevo-lugar" method="post">
-            <h2 class="popup__heading">Nuevo Lugar</h2>
-            <fieldset class="form__set">
-              <input
-                type="text"
-                class="popup__input"
-                id="np-title"
-                placeholder="Título"
-                minlength="2"
-                maxlength="30"
-                required
-              />
-              <span class="popup__input_type_error np-title-error"></span>
-              <input
-                type="url"
-                class="popup__input"
-                id="np-image"
-                placeholder="Enlace a la imagen"
-                required
-              />
-              <span class="popup__input_type_error np-image-error"></span>
-              <button type="submit" class="popup__button form__submit_inactive">
-                Crear
-              </button>
-            </fieldset>
-          </form>
-        </div>
-      </div> -->
     </div>
+
+    <!-- TEMPLATE para formulario genérico -->
+    <template id="formGEN">
+      <div class="popup__containerGEN">
+        <img
+          src="./images/BotonCerrar.png"
+          class="popup__cerrarGEN"
+          alt="boton para cerrar la ventana emergente"
+        />
+      </div>
+    </template>
 
     <!-- TEMPLATE Para visualizar imagen: -->
     <template id="imagen">
@@ -120,84 +99,7 @@
       </div>
     </template>
 
-    <!-- TEMPLATE para edición de perfil:-->
-    <template id="formEP">
-      <div class="popup__container" id="container-EP">
-        <img
-          src="./images/BotonCerrar.png"
-          class="popup__cerrar"
-          alt="boton para cerrar la ventana emergente"
-        />
-
-        <form class="popup__formEP" id="editar-perfil" method="post">
-          <h2 class="popup__heading">Editar perfil</h2>
-          <fieldset class="form__set">
-            <input
-              type="text"
-              class="popup__input"
-              id="nombre"
-              placeholder="Nombre"
-              minlength="2"
-              maxlength="40"
-              required
-            />
-            <span class="popup__input_type_error nombre-error"></span>
-            <input
-              type="text"
-              class="popup__input"
-              id="acerca"
-              placeholder="Acerca de mí"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-            <span class="popup__input_type_error acerca-error"></span>
-            <button type="submit" class="popup__button form__submit_inactive">
-              Guardar
-            </button>
-          </fieldset>
-        </form>
-      </div>
-    </template>
-
-    <!-- TEMPLATE para formulario de nuevo lugar-->
-    <template id="formNP">
-      <div class="popup__container" id="container-NP">
-        <img
-          src="./images/BotonCerrar.png"
-          class="popup__cerrar"
-          alt="boton para cerrar la ventana emergente"
-        />
-
-        <form class="popup__formNP" id="nuevo-lugar" method="post">
-          <h2 class="popup__heading">Nuevo Lugar</h2>
-          <fieldset class="form__set">
-            <input
-              type="text"
-              class="popup__input"
-              id="np-title"
-              placeholder="Título"
-              minlength="2"
-              maxlength="30"
-              required
-            />
-            <span class="popup__input_type_error np-title-error"></span>
-            <input
-              type="url"
-              class="popup__input"
-              id="np-image"
-              placeholder="Enlace a la imagen"
-              required
-            />
-            <span class="popup__input_type_error np-image-error"></span>
-            <button type="submit" class="popup__button form__submit_inactive">
-              Crear
-            </button>
-          </fieldset>
-        </form>
-      </div>
-    </template>
-
+    <!-- TEMPLATE para generar elemento de imagen -->
     <template id="element">
       <div class="element__container">
         <img src="" class="element__pic" alt="Pic description" />
@@ -205,11 +107,9 @@
 
         <div class="element__group">
           <h2 class="element__name">Name</h2>
-          <img
-            src="./images/Like.png"
-            class="element__like"
-            alt="Imagen like blanca"
-          />
+          <h2 class="element__liked"></h2>
+          <p class="img-id" style="display: none">nn</p>
+          <img src="" class="element__like" alt="Imagen like" />
         </div>
       </div>
     </template>

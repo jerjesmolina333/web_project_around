@@ -15,7 +15,6 @@ export class PopupWithImage extends Popup {
     this._imagenContainer.style.top = posYClick;
     this._imagenContainer.style.left = "1px";
     this._popupClose = this._imagenContainer.querySelector(".popup__cerrarIMG");
-    debugger;
     this._popup.style.display = "flex";
     this._removed = false;
 

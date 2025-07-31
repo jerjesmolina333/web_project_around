@@ -1,6 +1,11 @@
 import { PopupWithForm } from "./PopupWithForm.js";
-import { paramsValidationEP, paramsValidationNP } from "../utils/constants.js";
+import {
+  paramsValidationEP,
+  paramsValidationNP,
+  paramsValidationEdImg,
+} from "../utils/constants.js";
 import { FormValidator } from "./FormValidator.js";
+import { Api } from "./api.js";
 
 function attendSubmitProfile(evt) {
   evt.preventDefault();
@@ -16,11 +21,188 @@ function attendSubmitProfile(evt) {
   document.body.classList.remove("modal-open");
 }
 
-export function procesaClickEditarPerfil2(evt) {
-  const marcadoFormEP = `
-   <img
+function attendLike(evt) {
+  const element = evt.target;
+  const padre1 = element.parentElement;
+  const padre2 = padre1.parentElement;
+  const id_imagen = padre2.querySelector(".img-id").textContent;
+  const tempOrden = `https://around-api.es.tripleten-services.com/v1/cards/${id_imagen}/likes`;
+
+  fetch(tempOrden, {
+    method: "PUT",
+    headers: {
+      authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+    },
+  })
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      console.log("== Exito dando like. data: " + data);
+    })
+    .catch(function (error) {
+      console.log(error);
+      return Promise.reject(`Error: ${res.status}`);
+    });
+}
+
+function attendNoLike(evt) {
+  const element = evt.target;
+  const padre1 = element.parentElement;
+  const padre2 = padre1.parentElement;
+  const id_imagen = padre2.querySelector(".img-id").textContent;
+  const tempOrden = `https://around-api.es.tripleten-services.com/v1/cards/${id_imagen}/likes`;
+
+  fetch(tempOrden, {
+    method: "DELETE",
+    headers: {
+      authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+    },
+  })
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      console.log("== Exito dando NO like. data: " + data);
+    })
+    .catch(function (error) {
+      console.log(error);
+      return Promise.reject(`Error: ${res.status}`);
+    });
+}
+
+export function agregaEventosBotonLike() {
+  document.querySelectorAll(".element__like").forEach(function (img) {
+    img.addEventListener("mouseenter", function (evt) {
+      // debugger;
+      const element = evt.target;
+      const padre1 = element.parentElement;
+      const elementLike = padre1.querySelector(".element__liked");
+      const thisLiked = elementLike.textContent;
+      if (thisLiked === "Liked") {
+        img.src = "./images/Like.png";
+      } else {
+        img.src = "./images/Like2.png";
+      }
+    });
+
+    img.addEventListener("mouseleave", function (evt) {
+      // debugger;
+      const element = evt.target;
+      const padre1 = element.parentElement;
+      const elementLike = padre1.querySelector(".element__liked");
+      const thisLiked = elementLike.textContent;
+      if (thisLiked === "Liked") {
+        img.src = "./images/Like2.png";
+      } else {
+        img.src = "./images/Like.png";
+      }
+    });
+
+    img.addEventListener("click", function (evt) {
+      const element = evt.target;
+      const padre1 = element.parentElement;
+      const elementLike = padre1.querySelector(".element__liked");
+      const thisLiked = elementLike.textContent;
+      if (thisLiked === "Liked") {
+        img.src = "./images/Like.png";
+        elementLike.textContent = "No-Liked";
+        attendNoLike(evt);
+      } else {
+        img.src = "./images/Like2.png";
+        elementLike.textContent = "Liked";
+        attendLike(evt);
+      }
+    });
+  });
+}
+
+export function procesaClickEliminarImagen(evt, img_id) {
+  const marcadoFormElImg = `
+  <div class="popup__container" id="container-ElImg">
+     <img
+      src="./images/BotonCerrar.png"
+      class="popup__cerrar"
+      alt="boton para cerrar la ventana emergente"
+    />
+    <h2 class="popup__ElImgHeading">Estás seguro/a?</h2>
+    <h2 class="img-id">${img_id}</h2>
+    <form class="popup__formEI" id="eliminar-imagen" method="post">
+      <fieldset class="form__set">
+        <button type="submit" class="popup__button form__submit_inactive">
+          Sí
+        </button>
+      </fieldset>
+    </form>
+  </div>
+  `;
+  const formaEI = new PopupWithForm(
+    {
+      popupSelector: "#modal-form",
+      fondoSelector: "#modal-form",
+      templateSelector: "#formGEN",
+      containerSelector: ".popup__containerGEN",
+      formSelector: ".popup__formEI",
+      primerCampoTexto: ".popup__button",
+    },
+    marcadoFormElImg
+  );
+  formaEI.open(evt);
+}
+
+export function procesaClikEditarAvatar(evt) {
+  const marcadoFormEdImg = `
+      <div classclass="popup__container" id="container-EdImg">
+        <img
           src="./images/BotonCerrar.png"
-          class="popup__cerrarEP"
+          class="popup__cerrar"
+          alt="boton para cerrar la ventana emergente"
+        />
+        <form class="popup__formEdImg" id="editar-avatar" method="post">
+          <h2 class="popup__heading">Cambiar foto de perfil</h2>
+          <fieldset class="form__set">
+            <input
+              type="text"
+              class="popup__input"
+              id="link"
+              placeholder="Liga a la foto"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__input_type_error link-error"></span>
+            <button type="submit" class="popup__button form__submit_inactive">
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+  `;
+  const formEdImg = new PopupWithForm(
+    {
+      popupSelector: "#modal-form",
+      fondoSelector: "#modal-form",
+      templateSelector: "#formGEN",
+      containerSelector: ".popup__containerGEN",
+      formSelector: ".popup__formEdImg",
+      primerCampoTexto: "#link",
+    },
+    marcadoFormEdImg
+  );
+  formEdImg.open(evt);
+  const validatorEdImg = new FormValidator(
+    paramsValidationEdImg,
+    ".popup__input"
+  );
+  validatorEdImg.enableValidation();
+}
+
+export function procesaClickEditarPerfil(evt) {
+  const marcadoFormEP = `
+      <div class="popup__container popup__container_EP" id="container-EP"> 
+        <img
+          src="./images/BotonCerrar.png"
+          class="popup__cerrar"
           alt="boton para cerrar la ventana emergente"
         />
 
@@ -52,13 +234,14 @@ export function procesaClickEditarPerfil2(evt) {
             </button>
           </fieldset>
         </form>
+      </div>
 `;
   const formaEP2 = new PopupWithForm(
     {
       popupSelector: "#modal-form",
       fondoSelector: "#modal-form",
-      templateSelector: "#formEP",
-      containerSelector: "#container-EP",
+      templateSelector: "#formGEN",
+      containerSelector: ".popup__containerGEN",
       formSelector: ".popup__formEP",
       primerCampoTexto: "#nombre",
     },
@@ -72,12 +255,12 @@ export function procesaClickEditarPerfil2(evt) {
 
 export function procesaClickNewPlace(evt) {
   const marcadoFormNP = `
-   <img
+  <div class="popup__container popup__container_NP" id="container-NP"> 
+       <img
           src="./images/BotonCerrar.png"
           class="popup__cerrar"
           alt="boton para cerrar la ventana emergente"
         />
-
         <form class="popup__formNP" id="nuevo-lugar" method="post">
           <h2 class="popup__heading">Nuevo Lugar</h2>
           <fieldset class="form__set">
@@ -104,27 +287,25 @@ export function procesaClickNewPlace(evt) {
             </button>
           </fieldset>
         </form>
+      </div>
 `;
 
   const formaNP = new PopupWithForm(
     {
       popupSelector: "#modal-form",
       fondoSelector: "#modal-form",
-      templateSelector: "#formNP",
-      containerSelector: "#container-NP",
+      templateSelector: "#formGEN",
+      containerSelector: ".popup__containerGEN",
       formSelector: ".popup__formNP",
       primerCampoTexto: "#np-title",
     },
     marcadoFormNP
   );
+
   formaNP.open(evt);
+
   const validatorNP = new FormValidator(paramsValidationNP, ".popup__input");
   validatorNP.enableValidation();
-}
-
-export function procesaMouseenterEditar(imagenEditar) {
-  const boton = document.querySelector(".profile__boton-edit");
-  imagenEditar.src = "./images/EditButton2.png";
 }
 
 export function procesaMouseEnterBotPlus(botonPlus, imagenBotonPlus) {

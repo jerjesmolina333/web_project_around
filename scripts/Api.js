@@ -6,6 +6,8 @@ import {
 } from "../utils/constants.js";
 
 import { Card } from "./Card.js";
+import { agregaEventosBotonLike } from "./utils.js";
+
 let datosUs;
 const initialImages = [];
 
@@ -28,7 +30,6 @@ export class Api {
         }
       })
       .then(function (data) {
-        console.log("name: " + data.name);
         datosUs = data;
       })
       .catch((error) => {
@@ -47,14 +48,12 @@ export class Api {
         return res.json();
       })
       .then(function (data) {
-        console.log(data[0]);
-
         data.forEach((card) => {
           const estaCard = {
-            isLiked: card.IsLiked,
+            isLiked: card.isLiked,
             name: card.name,
             link: card.link,
-            id: card.id,
+            id: card._id,
           };
           initialImages.unshift(estaCard);
         });
@@ -65,7 +64,6 @@ export class Api {
       });
     const promises = [fetchUsuario, fetchImagenes];
     Promise.all(promises).then((results) => {
-      console.log("== Estoy en Promise.all");
       this._despInfoUsuario(datosUs);
       const cargaInicialImag = new Section(
         {
@@ -79,57 +77,54 @@ export class Api {
         cardListSelector
       );
       cargaInicialImag.renderItems();
+      agregaEventosBotonLike();
     });
   }
 
   _despInfoUsuario(data) {
-    console.log("name: " + data.name);
     const nombrePerfil = document.querySelector(".profile__name");
     const profesionPerfil = document.querySelector(".profile__profession");
     const photo = document.querySelector(".profile__photo");
     photo.src = data.avatar;
     nombrePerfil.textContent = data.name;
-
     profesionPerfil.textContent = data.about;
   }
 
   _insertaImagen(name, link) {
-    fetch(this._link, {
-      method: "POST",
-      headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        link: link,
-      }),
-    })
+    debugger;
+    console.log("headers: " + this._headers);
+    fetch(this._link, this._headers)
       .then(function (res) {
         return res.json();
       })
       .then(function (data) {
-        // console.log("name: " + data.name);
-        // console.log("link: " + data.link);
+        agregaEventosBotonLike();
       })
       .catch(function (error) {
         console.log(error);
-        return Promise.reject(`Error: ${res.status}`);
+        return Promise.reject(`Error: ${error}`);
+      });
+  }
+  _actualizaAvatar(newLink) {
+    debugger;
+    console.log("headers:" + this._headers);
+    fetch(this._link, this._headers)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        console.log("=== DATA: " + data);
+        // console.log("avatar: " + data.avatar);
+      })
+      .catch(function (error) {
+        console.log(error);
+        return Promise.reject(`Error: ${error}`);
       });
   }
 
   _actualizaUsuario(nombre, about) {
-    fetch(this._link, {
-      method: "PATCH",
-      headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: nombre,
-        about: about,
-      }),
-    })
+    debugger;
+    fetch(this._link, this._headers)
       .then(function (res) {
         return res.json();
       })

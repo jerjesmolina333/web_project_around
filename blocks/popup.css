@@ -127,11 +127,10 @@ body.modal-open {
   pointer-events: all; */
 }
 
-.popup__container {
+.popup__containerGEN {
   position: absolute;
   top: 15%;
-  width: 400px;
-  height: 400px;
+  margin: auto;
   background-color: white;
   border-radius: 7px;
   display: flex;
@@ -142,6 +141,15 @@ body.modal-open {
   z-index: 2;
 }
 
+.popup__container_NP {
+  width: 400px;
+  height: 400px;
+}
+
+.popup__container_EP {
+  width: 400px;
+  height: 400px;
+}
 .form {
   border: 0;
   /* Pone el margen y el padding dentro del contenedor: */
@@ -154,8 +162,20 @@ body.modal-open {
   position: relative;
   width: 25px;
   height: 25px;
-  left: 190px;
-  top: -430px;
+  left: 380px;
+  top: -30px;
+}
+.popup__ElImgHeading {
+  font-family: Inter;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0%;
+  color: black;
+  margin-left: 19px;
+  padding-top: 0;
+  position: relative;
+  top: 20px;
 }
 
 .popup__cerrarIMG {
@@ -245,7 +265,7 @@ body.modal-open {
 .popup__input {
   font-family: Inter;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1;
   letter-spacing: 0%;
   border: 0;

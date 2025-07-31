@@ -7,12 +7,10 @@ import { Card } from "./Card.js";
 export class PopupWithForm extends Popup {
   constructor(params, marcado) {
     super(params.popupSelector);
-
     this._fondoSelector = params.fondoSelector;
     this._containerSelector = params.containerSelector;
     this._templateSelector = params.templateSelector;
     this._formSelector = params.formSelector;
-
     this._primerCampoTextoSelector = params.primerCampoTexto;
     this._marcado = marcado;
   }
@@ -26,10 +24,8 @@ export class PopupWithForm extends Popup {
 
     formContainer.insertAdjacentHTML("afterbegin", this._marcado);
 
-    this._botonCerrar = formContainer.querySelector(".popup__cerrar");
     this._fondo.append(formContainer);
-    this._form = document.querySelector(this._formSelector);
-
+    this._form = formContainer.querySelector(this._formSelector);
     this._primerCampoTexto = formContainer.querySelector(
       this._primerCampoTextoSelector
     );
@@ -39,6 +35,7 @@ export class PopupWithForm extends Popup {
     this._setEventListeners();
   }
 
+  // Coloca los textos en la edición del Perfil de Usuario
   setTextEP() {
     const nombre = document.querySelector(".profile__name");
     const profesion = document.querySelector(".profile__profession");
@@ -54,6 +51,7 @@ export class PopupWithForm extends Popup {
     this._fondo.style.display = "none";
   }
 
+  // Evento submit de la Edición del Perfil de Usuario:
   _attendSubmitEP(evt) {
     const nombre = this._form.querySelector("#nombre");
     const profesion = this._form.querySelector("#acerca");
@@ -73,23 +71,93 @@ export class PopupWithForm extends Popup {
     profesionPerfil.textContent = profesion.value;
     this._nombre = nombre.value;
     this._about = profesion.value;
+    this._botonEnviar = this._form.querySelector(".popup__button");
+    this._botonEnviar.textContent = "Guardando...";
+
+    const jsonParam = JSON.stringify({
+      name: this._nombre,
+      about: this._about,
+    });
+
+    const objParams = {
+      method: "PATCH",
+      headers: {
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        "Content-Type": "application/json",
+      },
+      body: jsonParam,
+    };
 
     const apiEP = new Api({
       link: "https://around-api.es.tripleten-services.com/v1/users/me",
       method: "PATCH",
-      headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
-      },
-      body: JSON.stringify({
-        name: this._nombre,
-        about: this._about,
-      }),
+      headers: objParams,
     });
     apiEP._actualizaUsuario(this._nombre, this._about);
 
     this._fondo.style.display = "none";
   }
 
+  // Proceso submit para actualizar la imagen del avatar:
+  _attendSubmitEdImg(evt) {
+    this._botonEnviar = this._form.querySelector(".popup__button");
+    this._botonEnviar.textContent = "Guardando...";
+
+    const newLink = this._form.querySelector("#link").value;
+
+    const jsonParam = JSON.stringify({
+      avatar: newLink,
+    });
+
+    const objParams = {
+      method: "PATCH",
+      headers: {
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        "Content-Type": "application/json",
+      },
+      body: jsonParam,
+    };
+
+    const apiAA = new Api({
+      link: "https://around-api.es.tripleten-services.com/v1/users/me/avatar",
+      headers: objParams,
+    });
+    apiAA._actualizaAvatar(newLink);
+
+    this._close();
+  }
+
+  // Proceso submit para eliminar imagen:
+  _attendSubmitEI(evt) {
+    const element = evt.target;
+    const padre1 = element.parentElement;
+    const padre2 = padre1.parentElement;
+    const id_imagen = padre2.querySelector(".img-id").textContent;
+    this._botonEnviar = this._form.querySelector(".popup__button");
+    this._botonEnviar.textContent = "Guardando...";
+
+    const tempOrden = `https://around-api.es.tripleten-services.com/v1/cards/${id_imagen}`;
+
+    fetch(tempOrden, {
+      method: "DELETE",
+      headers: {
+        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+      },
+    })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        // console.log("== Exito borrando. data: " + data);
+      })
+      .catch(function (error) {
+        console.log(error);
+        return Promise.reject(`Error: ${res.status}`);
+      });
+    this._close();
+  }
+
+  // Proceso para agregar una nueva imagen (New Place):
   _attendSubmitNP(evt) {
     const cardsContainer = document.querySelector(".elements");
 
@@ -103,16 +171,26 @@ export class PopupWithForm extends Popup {
 
     cardsContainer.prepend(cardElement);
 
-    const apiNuevaImagen = new Api({
-      link: "https://around-api.es.tripleten-services.com/v1/cards/",
-      method: "PATCH",
+    this._botonEnviar = this._form.querySelector(".popup__button");
+    this._botonEnviar.textContent = "Guardando...";
+
+    const jsonParam = JSON.stringify({
+      name: this._nuevoTitulo,
+      link: this._nuevoLink,
+    });
+
+    const objParams = {
+      method: "POST",
       headers: {
         authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: this._nuevoTitulo,
-        link: this._nuevoLink,
-      }),
+      body: jsonParam,
+    };
+
+    const apiNuevaImagen = new Api({
+      link: "https://around-api.es.tripleten-services.com/v1/cards/",
+      headers: objParams,
     });
     apiNuevaImagen._insertaImagen(this._nuevoTitulo, this._nuevoLink);
 
@@ -128,7 +206,15 @@ export class PopupWithForm extends Popup {
       if (this._formSelector == ".popup__formNP") {
         this._attendSubmitNP(evt);
       }
+      if (this._formSelector == ".popup__formEI") {
+        this._attendSubmitEI(evt);
+      }
+      if (this._formSelector == ".popup__formEdImg") {
+        this._attendSubmitEdImg(evt);
+      }
     });
+
+    this._botonCerrar = document.querySelector(".popup__cerrar");
     this._botonCerrar.addEventListener("click", () => {
       this._close();
     });
@@ -155,11 +241,6 @@ export class PopupWithForm extends Popup {
         this._close();
       }
     });
-    const imagenCerrar = document.querySelector(".popup__cerrar");
-    imagenCerrar.addEventListener("click", (evt) => {
-      this._close();
-    });
-    // const imagenCerrarNP = document.querySelector(".popup__cerrarNP");
   }
 
   _getInputValuesEP() {

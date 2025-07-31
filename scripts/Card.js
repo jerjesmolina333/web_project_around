@@ -1,10 +1,13 @@
 import { PopupWithImage } from "./PopupWithImage.js";
+import { procesaClickEliminarImagen } from "./utils.js";
 
 export class Card {
   constructor(data, cardSelector) {
     this._imageLink = data.link;
     this._name = data.name;
     this._cardSelector = cardSelector;
+    this._like = data.isLiked;
+    this._id = data.id;
     this._elementTrashed = false;
   }
   _getTemplate() {
@@ -40,6 +43,14 @@ export class Card {
     this._element.querySelector(".element__pic").src = this._imageLink;
     this._element.querySelector(".element__name").textContent = this._name;
     this._element.querySelector(".element__pic").alt = this._name;
+    this._element.querySelector(".img-id").textContent = this._id;
+    if (this._like) {
+      this._element.querySelector(".element__like").src = "../images/Like2.png";
+      this._element.querySelector(".element__liked").textContent = "Liked";
+    } else {
+      this._element.querySelector(".element__like").src = "../images/Like.png";
+      this._element.querySelector(".element__liked").textContent = "No-Liked";
+    }
     this._setEventListeners();
     this._elementTrashed = false;
     return this._element;
@@ -59,10 +70,14 @@ export class Card {
     padre1.remove();
     padre2.style.display = "none";
   }
+
   _handleRemoveElement(evt) {
     const element = evt.target;
     const padre1 = element.parentElement;
+    const id_imagen = padre1.querySelector(".img-id").textContent;
     padre1.remove();
     this._elementTrashed = true;
+
+    procesaClickEliminarImagen(evt, id_imagen);
   }
 }

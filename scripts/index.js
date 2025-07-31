@@ -3,11 +3,10 @@ import { Api } from "./Api.js";
 
 import {
   procesaClickNewPlace,
-  procesaClickEditarPerfil2,
-  procesaMouseenterEditar,
+  procesaClickEditarPerfil,
+  procesaClikEditarAvatar,
   procesaMouseEnterBotPlus,
   procesaMouseleaveBotPlus,
-  agregaPropsImg,
 } from "./utils.js";
 
 import {
@@ -17,25 +16,56 @@ import {
 } from "../utils/constants.js";
 import Section from "../scripts/Section.js";
 
+function alerternateVisible(imagenEditarAvatar) {
+  if (imagenEditarAvatar.classList.contains("edit-avatar_no-visible")) {
+    imagenEditarAvatar.classList.remove("edit-avatar_no-visible");
+  }
+  imagenEditarAvatar.classList.add("edit-avatar_visible");
+}
+
+function alerternateNoVisible(imagenEditarAvatar) {
+  if (imagenEditarAvatar.classList.contains("edit-avatar_visible")) {
+    imagenEditarAvatar.classList.remove("edit-avatar_visible");
+  }
+  imagenEditarAvatar.classList.add("edit-avatar_no-visible");
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const imagenBotonPlus = document.querySelector(".profile__plus");
   const botonPlus = document.querySelector(".profile__boton-plus");
   const imagenEditar = document.querySelector(".profile__edit-image");
-  const editButton = document.querySelector(".profile__boton-edit");
-
+  const imagenAvatar = document.querySelector(".profile__photo");
+  const imagenEditarAvatar = document.querySelector(
+    ".profile__img-edit-avatar"
+  );
   let imagenDesplegada = false;
 
   function agregaEventosBotonEditarPerfil() {
     imagenEditar.addEventListener("click", function () {
-      procesaClickEditarPerfil2();
+      procesaClickEditarPerfil();
     });
 
     imagenEditar.addEventListener("mouseenter", function () {
-      procesaMouseenterEditar(imagenEditar);
+      imagenEditar.src = "./images/EditButton2.png";
     });
 
     imagenEditar.addEventListener("mouseleave", function () {
       imagenEditar.src = "./images/EditButton.png";
+    });
+    imagenAvatar.addEventListener("mouseenter", function (evt) {
+      evt.preventDefault();
+      console.log("Evento mouseenter");
+      imagenEditarAvatar.classList.add("edit-avatar_visible");
+      // setTimeout(alerternateVisible(imagenEditarAvatar), 9000);
+    });
+    imagenAvatar.addEventListener("mouseleave", function (evt) {
+      evt.preventDefault();
+      console.log("Evento mouseleave");
+      // setTimeout(alerternateNoVisible(imagenEditarAvatar), 8000);
+      // imagenEditarAvatar.display = "none";
+    });
+    imagenEditarAvatar.addEventListener("click", function (evt) {
+      procesaClikEditarAvatar(evt);
     });
   }
 
@@ -52,47 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function agregaEventosBotonLike() {
-    document.querySelectorAll(".element__like").forEach(function (img) {
-      let liked = false;
-      img.addEventListener("mouseenter", function () {
-        if (!liked) img.src = "./images/LikeHover.png";
-      });
-
-      img.addEventListener("mouseleave", function () {
-        if (liked) {
-          img.src = "./images/Like2.png";
-        } else {
-          img.src = "./images/Like.png";
-        }
-      });
-
-      img.addEventListener("click", function () {
-        liked = !liked;
-        if (liked) {
-          img.src = "./images/Like2.png";
-        } else {
-          img.src = "./images/Like.png";
-        }
-      });
-    });
-  }
-
-  function cargaDatosUsuario() {
-    return (
-      fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
-        headers: {
-          authorization: "1e56857e-5782-4eca-8ef7-c3510bd14463",
-        },
-      })
-        // .then((res) => res.json())
-        .then((res) =>
-          res.ok ? console.log("EXITO") : console.log("res. NO OK")
-        )
-        .catch((err) => console.log("hubo un error: " + err))
-    );
-  }
-
   ////////////////////////////////
   //// CÓDIGO:
 
@@ -102,24 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
       authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
     },
   });
-  // api._despUsuario();
   api._despInicial();
-
-  // const apiImag = new Api({
-  //   link: "https://around-api.es.tripleten-services.com/v1/cards/",
-  //   headers: {
-  //     authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
-  //   },
-  // });
-  // debugger;
-  // apiImag._despImagenesInic();
-  // debugger;
-
-  // apiImag._despInicial();
-
-  // cargaInicialImag.renderItems();
 
   agregaEventosBotonEditarPerfil();
   agregaEventosBotonNuevoLugar();
-  // agregaEventosBotonLike();
 });
