@@ -91,7 +91,6 @@ export class Api {
   }
 
   _insertaImagen(name, link) {
-    debugger;
     console.log("headers: " + this._headers);
     fetch(this._link, this._headers)
       .then(function (res) {
@@ -106,7 +105,6 @@ export class Api {
       });
   }
   _actualizaAvatar(newLink) {
-    debugger;
     console.log("headers:" + this._headers);
     fetch(this._link, this._headers)
       .then(function (res) {
@@ -123,7 +121,6 @@ export class Api {
   }
 
   _actualizaUsuario(nombre, about) {
-    debugger;
     fetch(this._link, this._headers)
       .then(function (res) {
         return res.json();

@@ -52,18 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imagenEditar.addEventListener("mouseleave", function () {
       imagenEditar.src = "./images/EditButton.png";
     });
-    imagenAvatar.addEventListener("mouseenter", function (evt) {
-      evt.preventDefault();
-      console.log("Evento mouseenter");
-      imagenEditarAvatar.classList.add("edit-avatar_visible");
-      // setTimeout(alerternateVisible(imagenEditarAvatar), 9000);
-    });
-    imagenAvatar.addEventListener("mouseleave", function (evt) {
-      evt.preventDefault();
-      console.log("Evento mouseleave");
-      // setTimeout(alerternateNoVisible(imagenEditarAvatar), 8000);
-      // imagenEditarAvatar.display = "none";
-    });
+
     imagenEditarAvatar.addEventListener("click", function (evt) {
       procesaClikEditarAvatar(evt);
     });

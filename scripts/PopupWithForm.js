@@ -5,7 +5,7 @@ import { UserInfo } from "./UserInfo.js";
 import { Card } from "./Card.js";
 
 export class PopupWithForm extends Popup {
-  constructor(params, marcado) {
+  constructor(params, marcado, contenedorImagen) {
     super(params.popupSelector);
     this._fondoSelector = params.fondoSelector;
     this._containerSelector = params.containerSelector;
@@ -13,6 +13,10 @@ export class PopupWithForm extends Popup {
     this._formSelector = params.formSelector;
     this._primerCampoTextoSelector = params.primerCampoTexto;
     this._marcado = marcado;
+    if (contenedorImagen) {
+      this._contenedorImag = contenedorImagen;
+      console.log("this._contenedorImag: " + this._contenedorImag);
+    }
   }
 
   open(evt) {
@@ -47,7 +51,10 @@ export class PopupWithForm extends Popup {
     this._inputAcerca.value = profesion.textContent;
   }
 
-  _close() {
+  _close(evt) {
+    const element = evt.target;
+    const padre1 = element.parentElement;
+    padre1.remove();
     this._fondo.style.display = "none";
   }
 
@@ -124,7 +131,7 @@ export class PopupWithForm extends Popup {
     });
     apiAA._actualizaAvatar(newLink);
 
-    this._close();
+    this._close(evt);
   }
 
   // Proceso submit para eliminar imagen:
@@ -134,7 +141,9 @@ export class PopupWithForm extends Popup {
     const padre2 = padre1.parentElement;
     const id_imagen = padre2.querySelector(".img-id").textContent;
     this._botonEnviar = this._form.querySelector(".popup__button");
-    this._botonEnviar.textContent = "Guardando...";
+    this._contenedorImag.remove();
+    this._elementTrashed = true;
+    this._botonEnviar.textContent = "Eliminando...";
 
     const tempOrden = `https://around-api.es.tripleten-services.com/v1/cards/${id_imagen}`;
 
@@ -147,14 +156,12 @@ export class PopupWithForm extends Popup {
       .then(function (res) {
         return res.json();
       })
-      .then(function (data) {
-        // console.log("== Exito borrando. data: " + data);
-      })
+      .then(function (data, evt) {})
       .catch(function (error) {
         console.log(error);
-        return Promise.reject(`Error: ${res.status}`);
+        return Promise.reject(`Error: ${error}`);
       });
-    this._close();
+    this._close(evt);
   }
 
   // Proceso para agregar una nueva imagen (New Place):
@@ -194,7 +201,7 @@ export class PopupWithForm extends Popup {
     });
     apiNuevaImagen._insertaImagen(this._nuevoTitulo, this._nuevoLink);
 
-    this._close();
+    this._close(evt);
   }
 
   _setEventListeners() {
@@ -215,8 +222,8 @@ export class PopupWithForm extends Popup {
     });
 
     this._botonCerrar = document.querySelector(".popup__cerrar");
-    this._botonCerrar.addEventListener("click", () => {
-      this._close();
+    this._botonCerrar.addEventListener("click", (evt) => {
+      this._close(evt);
     });
 
     this._primerCampoTexto.addEventListener(
@@ -225,7 +232,7 @@ export class PopupWithForm extends Popup {
         var keyValue = event.key;
 
         if (keyValue == "Escape") {
-          this._close();
+          this._close(evt);
 
           if (imagenEditar) {
             imagenEditar.addEventListener("click", procesaClickEditarPerfil);
@@ -238,7 +245,7 @@ export class PopupWithForm extends Popup {
     this._fondo.addEventListener("click", (evt) => {
       const elemento = evt.target.classList[0];
       if (elemento === "modal-form") {
-        this._close();
+        this._close(evt);
       }
     });
   }

@@ -28,14 +28,12 @@ export class PopupWithImage extends Popup {
       this.close(evt);
     });
     this._popup.addEventListener("keydown", (evt) => {
-      debugger;
       const tecla = evt.key;
       if (evt.key === "Escape") {
         this.close();
       }
     });
     this._imagenContainer.addEventListener("keydown", (evt) => {
-      debugger;
       const tecla = evt.key;
       if (evt.key === "Escape") {
         this.close();

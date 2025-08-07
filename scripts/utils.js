@@ -74,7 +74,6 @@ function attendNoLike(evt) {
 export function agregaEventosBotonLike() {
   document.querySelectorAll(".element__like").forEach(function (img) {
     img.addEventListener("mouseenter", function (evt) {
-      // debugger;
       const element = evt.target;
       const padre1 = element.parentElement;
       const elementLike = padre1.querySelector(".element__liked");
@@ -87,7 +86,6 @@ export function agregaEventosBotonLike() {
     });
 
     img.addEventListener("mouseleave", function (evt) {
-      // debugger;
       const element = evt.target;
       const padre1 = element.parentElement;
       const elementLike = padre1.querySelector(".element__liked");
@@ -117,7 +115,7 @@ export function agregaEventosBotonLike() {
   });
 }
 
-export function procesaClickEliminarImagen(evt, img_id) {
+export function procesaClickEliminarImagen(evt, img_id, contenedorImagen) {
   const marcadoFormElImg = `
   <div class="popup__container" id="container-ElImg">
      <img
@@ -145,9 +143,11 @@ export function procesaClickEliminarImagen(evt, img_id) {
       formSelector: ".popup__formEI",
       primerCampoTexto: ".popup__button",
     },
-    marcadoFormElImg
+    marcadoFormElImg,
+    contenedorImagen
   );
   formaEI.open(evt);
+  formaEI._setEventListeners();
 }
 
 export function procesaClikEditarAvatar(evt) {

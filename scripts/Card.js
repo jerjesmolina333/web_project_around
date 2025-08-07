@@ -75,9 +75,7 @@ export class Card {
     const element = evt.target;
     const padre1 = element.parentElement;
     const id_imagen = padre1.querySelector(".img-id").textContent;
-    padre1.remove();
-    this._elementTrashed = true;
 
-    procesaClickEliminarImagen(evt, id_imagen);
+    procesaClickEliminarImagen(evt, id_imagen, padre1);
   }
 }
