@@ -34,7 +34,7 @@ export class Api {
       })
       .catch((error) => {
         console.log("Error en fetchUsuario: " + error);
-        return Promise.reject(`Error: ${res.status}`);
+        return Promise.reject(`Error: ${error}`);
       });
     const fetchImagenes = fetch(
       "https://around-api.es.tripleten-services.com/v1/cards/",

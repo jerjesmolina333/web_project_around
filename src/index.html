@@ -6,7 +6,7 @@
     <meta name="description" content="Este es el proyecto 12 de TripleTen" />
     <meta name="keywords" content="TripleTen Proyecto11 JavaScript" />
     <meta name="author" content="Jerjes Molina" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="../pages/index.css" />
 
     <title>Proyect Around-12</title>
   </head>
@@ -14,7 +14,7 @@
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/Logo.png" class="header__logo" alt="Logo" />
+        <img src="../images/Logo.png" class="header__logo" alt="Logo" />
         <div class="header__line"></div>
       </header>
 
@@ -22,7 +22,7 @@
         <div class="profile__container-imgs">
           <img src="" class="profile__photo" alt="User photo" />
           <img
-            src="./images/Icono_ed_avatar.png"
+            src="../images/Icono_ed_avatar.png"
             class="profile__img-edit-avatar"
           />
         </div>
@@ -32,7 +32,7 @@
             <p class="profile__name"></p>
             <button class="profile__boton-edit" aria-label="Editar perfil">
               <img
-                src="./images/EditButton.png"
+                src="../images/EditButton.png"
                 class="profile__edit-image"
                 alt="Edit Button"
               />
@@ -43,7 +43,7 @@
 
         <button class="profile__boton-plus" aria-label="Agrega imagen">
           <img
-            src="./images/AddButton.png"
+            src="../images/AddButton.png"
             class="profile__plus"
             alt="Add button"
           />
@@ -53,22 +53,20 @@
       <div class="elements"></div>
 
       <footer class="footer">
-        <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 12.2</div>
+        <div class="footer__author">&copy; 2025. Jerjes Molina Ver. 12.3.1</div>
       </footer>
 
       <!-- Ventana modal para ver la imagen: -->
       <div class="modal-overlay" id="modalOverlay" style="display: none">
-        <!-- <div class="modal" id="modal"> -->
         <div class="imagen__container" id="imagen__container">
           <img
-            src="./images/BotonCerrar.png"
+            src="../images/BotonCerrar.png"
             class="popup__cerrarIMG"
             alt="boton para cerrar la ventana emergente"
           />
 
           <img src="" class="imagen__pic" alt="Imagen por desplegar" />
         </div>
-        <!-- </div> -->
       </div>
 
       <!-- Fondo genérico para formularios-->
@@ -103,7 +101,11 @@
     <template id="element">
       <div class="element__container">
         <img src="" class="element__pic" alt="Pic description" />
-        <img src="./images/Trash.svg" class="element__trash" alt="Trash icon" />
+        <img
+          src="../images/Trash.svg"
+          class="element__trash"
+          alt="Trash icon"
+        />
 
         <div class="element__group">
           <h2 class="element__name">Name</h2>
@@ -114,6 +116,6 @@
       </div>
     </template>
 
-    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="../scripts/index.js"></script>
   </body>
 </html>

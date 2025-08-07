@@ -5,7 +5,7 @@ import {
   paramsValidationEdImg,
 } from "../utils/constants.js";
 import { FormValidator } from "./FormValidator.js";
-import { Api } from "./api.js";
+import { Api } from "./Api.js";
 
 function attendSubmitProfile(evt) {
   evt.preventDefault();
@@ -79,9 +79,9 @@ export function agregaEventosBotonLike() {
       const elementLike = padre1.querySelector(".element__liked");
       const thisLiked = elementLike.textContent;
       if (thisLiked === "Liked") {
-        img.src = "./images/Like.png";
+        img.src = "../images/Like.png";
       } else {
-        img.src = "./images/Like2.png";
+        img.src = "../images/Like2.png";
       }
     });
 
@@ -91,9 +91,9 @@ export function agregaEventosBotonLike() {
       const elementLike = padre1.querySelector(".element__liked");
       const thisLiked = elementLike.textContent;
       if (thisLiked === "Liked") {
-        img.src = "./images/Like2.png";
+        img.src = "../images/Like2.png";
       } else {
-        img.src = "./images/Like.png";
+        img.src = "../images/Like.png";
       }
     });
 
@@ -103,11 +103,11 @@ export function agregaEventosBotonLike() {
       const elementLike = padre1.querySelector(".element__liked");
       const thisLiked = elementLike.textContent;
       if (thisLiked === "Liked") {
-        img.src = "./images/Like.png";
+        img.src = "../images/Like.png";
         elementLike.textContent = "No-Liked";
         attendNoLike(evt);
       } else {
-        img.src = "./images/Like2.png";
+        img.src = "../images/Like2.png";
         elementLike.textContent = "Liked";
         attendLike(evt);
       }

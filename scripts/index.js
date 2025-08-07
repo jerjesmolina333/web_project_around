@@ -16,25 +16,10 @@ import {
 } from "../utils/constants.js";
 import Section from "../scripts/Section.js";
 
-function alerternateVisible(imagenEditarAvatar) {
-  if (imagenEditarAvatar.classList.contains("edit-avatar_no-visible")) {
-    imagenEditarAvatar.classList.remove("edit-avatar_no-visible");
-  }
-  imagenEditarAvatar.classList.add("edit-avatar_visible");
-}
-
-function alerternateNoVisible(imagenEditarAvatar) {
-  if (imagenEditarAvatar.classList.contains("edit-avatar_visible")) {
-    imagenEditarAvatar.classList.remove("edit-avatar_visible");
-  }
-  imagenEditarAvatar.classList.add("edit-avatar_no-visible");
-}
-
 document.addEventListener("DOMContentLoaded", function () {
   const imagenBotonPlus = document.querySelector(".profile__plus");
   const botonPlus = document.querySelector(".profile__boton-plus");
   const imagenEditar = document.querySelector(".profile__edit-image");
-  const imagenAvatar = document.querySelector(".profile__photo");
   const imagenEditarAvatar = document.querySelector(
     ".profile__img-edit-avatar"
   );
@@ -46,11 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     imagenEditar.addEventListener("mouseenter", function () {
-      imagenEditar.src = "./images/EditButton2.png";
+      imagenEditar.src = "../images/EditButton2.png";
     });
 
     imagenEditar.addEventListener("mouseleave", function () {
-      imagenEditar.src = "./images/EditButton.png";
+      imagenEditar.src = "../images/EditButton.png";
     });
 
     imagenEditarAvatar.addEventListener("click", function (evt) {
@@ -64,10 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     botonPlus.addEventListener("mouseenter", function () {
-      procesaMouseEnterBotPlus(botonPlus, imagenBotonPlus);
+      debugger;
+      imagenBotonPlus.src = "../images/AddButton2.png";
     });
     botonPlus.addEventListener("mouseleave", function () {
-      procesaMouseleaveBotPlus(botonPlus, imagenBotonPlus);
+      imagenBotonPlus.src = "../images/AddButton.png";
     });
   }
 
