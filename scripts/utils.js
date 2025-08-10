@@ -119,9 +119,9 @@ export function procesaClickEliminarImagen(evt, img_id, contenedorImagen) {
   const marcadoFormElImg = `
   <div class="popup__container" id="container-ElImg">
      <img
-      src="./images/BotonCerrar.png"
+      src="../images/BotonCerrar.png"
       class="popup__cerrar"
-      alt="boton para cerrar la ventana emergente"
+      alt="cerrar ventana"
     />
     <h2 class="popup__ElImgHeading">Estás seguro/a?</h2>
     <h2 class="img-id">${img_id}</h2>
@@ -146,6 +146,7 @@ export function procesaClickEliminarImagen(evt, img_id, contenedorImagen) {
     marcadoFormElImg,
     contenedorImagen
   );
+
   formaEI.open(evt);
   formaEI._setEventListeners();
 }
@@ -154,9 +155,9 @@ export function procesaClikEditarAvatar(evt) {
   const marcadoFormEdImg = `
       <div classclass="popup__container" id="container-EdImg">
         <img
-          src="./images/BotonCerrar.png"
+          src="../images/BotonCerrar.png"
           class="popup__cerrar"
-          alt="boton para cerrar la ventana emergente"
+          alt="cerrar ventana"
         />
         <form class="popup__formEdImg" id="editar-avatar" method="post">
           <h2 class="popup__heading">Cambiar foto de perfil</h2>
@@ -201,9 +202,9 @@ export function procesaClickEditarPerfil(evt) {
   const marcadoFormEP = `
       <div class="popup__container popup__container_EP" id="container-EP"> 
         <img
-          src="./images/BotonCerrar.png"
+          src="../images/BotonCerrar.png"
           class="popup__cerrar"
-          alt="boton para cerrar la ventana emergente"
+          alt="cerrar ventana"
         />
 
         <form class="popup__formEP" id="editar-perfil" method="post">
@@ -257,9 +258,9 @@ export function procesaClickNewPlace(evt) {
   const marcadoFormNP = `
   <div class="popup__container popup__container_NP" id="container-NP"> 
        <img
-          src="./images/BotonCerrar.png"
+          src="../images/BotonCerrar.png"
           class="popup__cerrar"
-          alt="boton para cerrar la ventana emergente"
+          alt="cerrar ventana"
         />
         <form class="popup__formNP" id="nuevo-lugar" method="post">
           <h2 class="popup__heading">Nuevo Lugar</h2>
@@ -358,7 +359,7 @@ export function agregaPropsImg(evt, img, imagenDesplegada) {
       const fondoPage = document.querySelector(".popup");
       fondoPage.addEventListener("click", (evt) => {
         const elemento = evt.target.classList[0];
-        console.log("elemento: " + elemento);
+        // console.log("elemento: " + elemento);
         if (elemento === "popup") {
           const elem = evt.target;
           const padre1 = elem.parentElement;

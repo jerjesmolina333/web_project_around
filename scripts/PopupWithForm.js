@@ -15,7 +15,6 @@ export class PopupWithForm extends Popup {
     this._marcado = marcado;
     if (contenedorImagen) {
       this._contenedorImag = contenedorImagen;
-      console.log("this._contenedorImag: " + this._contenedorImag);
     }
   }
 
@@ -27,6 +26,9 @@ export class PopupWithForm extends Popup {
       .cloneNode(true);
 
     formContainer.insertAdjacentHTML("afterbegin", this._marcado);
+    if (this._contenedorImag) {
+      this._id_imagen = formContainer.querySelector(".img-id").textContent;
+    }
 
     this._fondo.append(formContainer);
     this._form = formContainer.querySelector(this._formSelector);
@@ -89,17 +91,18 @@ export class PopupWithForm extends Popup {
     const objParams = {
       method: "PATCH",
       headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        authorization: "082ad1cf-6751-4277-bd54-4a8ddfdec0e7",
         "Content-Type": "application/json",
       },
       body: jsonParam,
     };
 
-    const apiEP = new Api({
-      link: "https://around-api.es.tripleten-services.com/v1/users/me",
-      method: "PATCH",
-      headers: objParams,
-    });
+    const apiEP = new Api(
+      {
+        link: "https://around-api.es.tripleten-services.com/v1/users/me",
+      },
+      objParams
+    );
     apiEP._actualizaUsuario(this._nombre, this._about);
 
     this._fondo.style.display = "none";
@@ -119,16 +122,18 @@ export class PopupWithForm extends Popup {
     const objParams = {
       method: "PATCH",
       headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        authorization: "082ad1cf-6751-4277-bd54-4a8ddfdec0e7",
         "Content-Type": "application/json",
       },
       body: jsonParam,
     };
 
-    const apiAA = new Api({
-      link: "https://around-api.es.tripleten-services.com/v1/users/me/avatar",
-      headers: objParams,
-    });
+    const apiAA = new Api(
+      {
+        link: "https://around-api.es.tripleten-services.com/v1/users/me/avatar",
+      },
+      objParams
+    );
     apiAA._actualizaAvatar(newLink);
 
     this._close(evt);
@@ -136,32 +141,32 @@ export class PopupWithForm extends Popup {
 
   // Proceso submit para eliminar imagen:
   _attendSubmitEI(evt) {
-    const element = evt.target;
-    const padre1 = element.parentElement;
-    const padre2 = padre1.parentElement;
-    const id_imagen = padre2.querySelector(".img-id").textContent;
-    this._botonEnviar = this._form.querySelector(".popup__button");
-    this._contenedorImag.remove();
-    this._elementTrashed = true;
-    this._botonEnviar.textContent = "Eliminando...";
+    if (!this._elementTrashed) {
+      const element = evt.target;
+      // console.log("this._id_imagen:" + this._id_imagen);
+      this._botonEnviar = this._form.querySelector(".popup__button");
+      this._contenedorImag.remove();
+      this._elementTrashed = true;
+      this._botonEnviar.textContent = "Eliminando...";
 
-    const tempOrden = `https://around-api.es.tripleten-services.com/v1/cards/${id_imagen}`;
+      const tempOrden = `https://around-api.es.tripleten-services.com/v1/cards/${this._id_imagen}`;
 
-    fetch(tempOrden, {
-      method: "DELETE",
-      headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
-      },
-    })
-      .then(function (res) {
-        return res.json();
+      fetch(tempOrden, {
+        method: "DELETE",
+        headers: {
+          authorization: "082ad1cf-6751-4277-bd54-4a8ddfdec0e7",
+        },
       })
-      .then(function (data, evt) {})
-      .catch(function (error) {
-        console.log(error);
-        return Promise.reject(`Error: ${error}`);
-      });
-    this._close(evt);
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data, evt) {})
+        .catch(function (error) {
+          console.log(error);
+          return Promise.reject(`Error: ${error}`);
+        });
+      this._close(evt);
+    }
   }
 
   // Proceso para agregar una nueva imagen (New Place):
@@ -189,16 +194,17 @@ export class PopupWithForm extends Popup {
     const objParams = {
       method: "POST",
       headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+        authorization: "082ad1cf-6751-4277-bd54-4a8ddfdec0e7",
         "Content-Type": "application/json",
       },
       body: jsonParam,
     };
-
-    const apiNuevaImagen = new Api({
-      link: "https://around-api.es.tripleten-services.com/v1/cards/",
-      headers: objParams,
-    });
+    const apiNuevaImagen = new Api(
+      {
+        link: "https://around-api.es.tripleten-services.com/v1/cards/",
+      },
+      objParams
+    );
     apiNuevaImagen._insertaImagen(this._nuevoTitulo, this._nuevoLink);
 
     this._close(evt);

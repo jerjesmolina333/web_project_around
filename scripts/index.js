@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     botonPlus.addEventListener("mouseenter", function () {
-      debugger;
       imagenBotonPlus.src = "../images/AddButton2.png";
     });
     botonPlus.addEventListener("mouseleave", function () {
@@ -60,12 +59,18 @@ document.addEventListener("DOMContentLoaded", function () {
   ////////////////////////////////
   //// CÓDIGO:
 
-  const api = new Api({
-    link: "https://around-api.es.tripleten-services.com/v1/users/me",
+  const params = {
     headers: {
-      authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+      authorization: "082ad1cf-6751-4277-bd54-4a8ddfdec0e7",
     },
-  });
+  };
+
+  const api = new Api(
+    {
+      link: "https://around-api.es.tripleten-services.com/v1/users/me",
+    },
+    params
+  );
   api._despInicial();
 
   agregaEventosBotonEditarPerfil();

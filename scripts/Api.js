@@ -12,18 +12,14 @@ let datosUs;
 const initialImages = [];
 
 export class Api {
-  constructor({ link, headers }) {
+  constructor({ link }, headers) {
     this._link = link;
     this._headers = headers;
     const datos = "";
   }
 
   _despInicial() {
-    const fetchUsuario = fetch(this._link, {
-      headers: {
-        authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
-      },
-    })
+    const fetchUsuario = fetch(this._link, this._headers)
       .then(function (res) {
         if (res.ok) {
           return res.json();
@@ -40,7 +36,7 @@ export class Api {
       "https://around-api.es.tripleten-services.com/v1/cards/",
       {
         headers: {
-          authorization: "a75089ec-acc5-4d18-8c11-de5f96ae144f",
+          authorization: "082ad1cf-6751-4277-bd54-4a8ddfdec0e7",
         },
       }
     )
@@ -60,7 +56,7 @@ export class Api {
       })
       .catch((error) => {
         console.log("Error en fetchImagenes: " + error);
-        return Promise.reject(`Error: ${res.status}`);
+        return Promise.reject(`Error: ${error}`);
       });
     const promises = [fetchUsuario, fetchImagenes];
     Promise.all(promises).then((results) => {
@@ -91,7 +87,6 @@ export class Api {
   }
 
   _insertaImagen(name, link) {
-    console.log("headers: " + this._headers);
     fetch(this._link, this._headers)
       .then(function (res) {
         return res.json();
@@ -105,15 +100,11 @@ export class Api {
       });
   }
   _actualizaAvatar(newLink) {
-    console.log("headers:" + this._headers);
     fetch(this._link, this._headers)
       .then(function (res) {
         return res.json();
       })
-      .then(function (data) {
-        console.log("=== DATA: " + data);
-        // console.log("avatar: " + data.avatar);
-      })
+      .then(function (data) {})
       .catch(function (error) {
         console.log(error);
         return Promise.reject(`Error: ${error}`);
@@ -132,7 +123,7 @@ export class Api {
       })
       .catch(function (error) {
         console.log(error);
-        return Promise.reject(`Error: ${res.status}`);
+        return Promise.reject(`Error: ${error}`);
       });
   }
 }
