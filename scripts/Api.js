@@ -61,6 +61,7 @@ export class Api {
     const promises = [fetchUsuario, fetchImagenes];
     Promise.all(promises).then((results) => {
       this._despInfoUsuario(datosUs);
+      debugger;
       const cargaInicialImag = new Section(
         {
           data: initialImages,
