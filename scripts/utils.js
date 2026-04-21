@@ -144,7 +144,7 @@ export function procesaClickEliminarImagen(evt, img_id, contenedorImagen) {
       primerCampoTexto: ".popup__button",
     },
     marcadoFormElImg,
-    contenedorImagen
+    contenedorImagen,
   );
 
   formaEI.open(evt);
@@ -188,12 +188,12 @@ export function procesaClikEditarAvatar(evt) {
       formSelector: ".popup__formEdImg",
       primerCampoTexto: "#link",
     },
-    marcadoFormEdImg
+    marcadoFormEdImg,
   );
   formEdImg.open(evt);
   const validatorEdImg = new FormValidator(
     paramsValidationEdImg,
-    ".popup__input"
+    ".popup__input",
   );
   validatorEdImg.enableValidation();
 }
@@ -246,7 +246,7 @@ export function procesaClickEditarPerfil(evt) {
       formSelector: ".popup__formEP",
       primerCampoTexto: "#nombre",
     },
-    marcadoFormEP
+    marcadoFormEP,
   );
   formaEP2.open(evt);
   formaEP2.setTextEP();
@@ -284,7 +284,7 @@ export function procesaClickNewPlace(evt) {
             />
             <span class="popup__input_type_error np-image-error"></span>
             <button type="submit" class="popup__button form__submit_inactive">
-              Crear
+              CREAR
             </button>
           </fieldset>
         </form>
@@ -300,7 +300,7 @@ export function procesaClickNewPlace(evt) {
       formSelector: ".popup__formNP",
       primerCampoTexto: "#np-title",
     },
-    marcadoFormNP
+    marcadoFormNP,
   );
 
   formaNP.open(evt);

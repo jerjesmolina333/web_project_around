@@ -218,7 +218,7 @@ body.modal-open {
 }
 .form__submit {
   width: 100%;
-  background: #000;
+  /* background: #000; */
   color: #fff;
   font-family: Inter;
   font-weight: normal;
@@ -231,8 +231,9 @@ body.modal-open {
   transition: background 0.2s;
 }
 .form__submit:hover {
-  background: #222;
-  opacity: 0.5;
+  background: blue;
+  color: #ffd700;
+  opacity: 0.9;
 }
 .popup__button_disabled {
   width: 100%;
@@ -250,7 +251,7 @@ body.modal-open {
 }
 
 .popup__button:hover {
-  background-color: #595959;
+  background-color: blue;
 }
 .form__set {
   border: 0;
